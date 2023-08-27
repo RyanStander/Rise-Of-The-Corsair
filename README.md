@@ -1,12 +1,6 @@
 <!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
+<!---->
 
 
 
@@ -30,11 +24,11 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/RyanStander/Rise-Of-The-Corsair">
+    <img src="https://github.com/RyanStander/Rise-Of-The-Corsair/blob/main/Extras/Rise%20Of%20The%20Corsair%20Logo.jpg" alt="Logo" width="300" height="300">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Rise of the Corair</h3>
 
   <p align="center">
     project_description
@@ -206,7 +200,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* []()
+* [Game logo image by inksyndromeartwork on Freepik](https://www.freepik.com/free-vector/skull-pirates-with-vintage-gun-illustration_36782121.htm#query=pirate%20art&position=5&from_view=keyword&track=ais)
 * []()
 * []()
 
