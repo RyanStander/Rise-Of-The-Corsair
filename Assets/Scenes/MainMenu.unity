@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 877.21216, g: 1552.948, b: 1799.2178, a: 1}
+  m_IndirectSpecularColor: {r: 872.7609, g: 1549.0713, b: 1795.4061, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -293,6 +293,62 @@ PrefabInstance:
     - target: {fileID: 905133483238775498, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
       propertyPath: m_Name
       value: Ocean
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: underWater
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: foamAreaSize.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: foamAreaSize.y
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: foamResolution
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: foamSmoothness
+      value: 0.079
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: simulationFoamMask
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: simulationFoamAmount
+      value: 0.711
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: foamPersistenceMultiplier
+      value: 0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: simulationFoamWindCurve.m_Curve.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: simulationFoamWindCurve.m_Curve.Array.data[0].time
+      value: -0.0035591125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: simulationFoamWindCurve.m_Curve.Array.data[1].time
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: simulationFoamWindCurve.m_Curve.Array.data[2].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: simulationFoamWindCurve.m_Curve.Array.data[0].value
+      value: -0.013092041
+      objectReference: {fileID: 0}
+    - target: {fileID: 2247645375358378153, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
+      propertyPath: simulationFoamWindCurve.m_Curve.Array.data[1].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2781135950451816757, guid: 6c09da89a98622a4fa1affa7c78e884e, type: 3}
       propertyPath: m_LocalPosition.x
