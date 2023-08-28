@@ -435,7 +435,7 @@ MonoBehaviour:
   timeMultiplier: 1
   cpuSimulation: 1
   cpuFullResolution: 0
-  cpuEvaluateRipples: 0
+  cpuEvaluateRipples: 1
   customMaterial: {fileID: 0}
   startSmoothness: 0.95
   endSmoothness: 0.85
@@ -545,10 +545,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  repetitionSize: 500
+  repetitionSize: 1200
   largeOrientationValue: 0
-  largeWindSpeed: 30
-  largeChaos: 0.85
+  largeWindSpeed: 214
+  largeChaos: 0.873
   largeBand0Multiplier: 1
   largeBand0FadeMode: 1
   largeBand0FadeStart: 1500
