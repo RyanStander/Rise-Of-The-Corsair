@@ -1,6 +1,7 @@
 ﻿//Event that informs subscribers of a debug log
 
 using TimeAndSeasons;
+using Weather;
 
 namespace Events
 {
@@ -35,6 +36,15 @@ namespace Events
         public NewDay():base(EventType.NewDay)
         {
 
+        }
+    }
+
+    public class WeatherHasChanged : EventData
+    {
+        public readonly WeatherPreset WeatherPreset;
+        public WeatherHasChanged(WeatherPreset weatherPreset) : base(EventType.WeatherHasChanged)
+        {
+            WeatherPreset = weatherPreset;
         }
     }
 }

@@ -212,7 +212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359450375}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16473873, y: -0.000000021959535, z: 0.0000000036676966, w: 0.98633724}
+  m_LocalRotation: {x: 0.19922972, y: 1.0038442e-15, z: -1.4351855e-16, w: 0.9799528}
   m_LocalPosition: {x: 0, y: 25, z: -75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -456,7 +456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474597059}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16473873, y: -0.000000021959535, z: 0.0000000036676966, w: 0.98633724}
+  m_LocalRotation: {x: 0.19922972, y: 1.0038442e-15, z: -1.4351855e-16, w: 0.9799528}
   m_LocalPosition: {x: 0, y: 25, z: -75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -737,6 +737,7 @@ GameObject:
   - component: {fileID: 1716078667}
   - component: {fileID: 1716078669}
   - component: {fileID: 1716078670}
+  - component: {fileID: 1716078671}
   m_Layer: 0
   m_Name: TimeAndSeasons
   m_TagString: Untagged
@@ -840,6 +841,27 @@ MonoBehaviour:
   weatherDataSet: {fileID: 11400000, guid: 5bd380dc005bff543861da02778b69cc, type: 2}
   minTimeBetweenWeatherChanges: 1
   maxTimeBetweenWeatherChanges: 2
+--- !u!114 &1716078671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716078666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98954a18b04ad664e9636c7df12e3794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minWindSpeed: 15
+  maxWindSpeed: 120
+  meanWindSpeed: 50
+  minWindSpeedChangeRate: 0.1
+  maxWindSpeedChangeRate: 0.5
+  minWindDirectionChangeRate: 0.1
+  maxWindDirectionChangeRate: 0.5
+  minTimeBetweenWindChanges: 60
+  maxTimeBetweenWindChanges: 600
 --- !u!4 &1727001901 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9134111342436465087, guid: ce1e36ceb6f12eb4d95d9bbfb1ba0ec9, type: 3}
@@ -947,7 +969,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9134111342436465087, guid: ce1e36ceb6f12eb4d95d9bbfb1ba0ec9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.7720401
+      value: -6.810647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

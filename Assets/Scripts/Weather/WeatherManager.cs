@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Events;
 using TimeAndSeasons;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -54,7 +55,7 @@ namespace Weather
             };
 
             // Notify event subscribers about the weather change
-            //OnWeatherChange?.Invoke(currentWeather);
+            EventManager.currentManager.AddEvent(new WeatherHasChanged(currentWeather));
 
             // Set a new random time interval for the next weather change
             maxTimeBetweenWeatherChanges = Random.Range(minTimeBetweenWeatherChanges, maxTimeBetweenWeatherChanges);

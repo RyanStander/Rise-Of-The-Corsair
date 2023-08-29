@@ -5,6 +5,7 @@ namespace Events
     {
         DateChange=0,
         SendTimeStrength=1,
-        NewDay=2
+        NewDay=2,
+        WeatherHasChanged=3,
     }
 }
