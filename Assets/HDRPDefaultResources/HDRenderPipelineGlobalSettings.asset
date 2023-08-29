@@ -101,9 +101,16 @@ MonoBehaviour:
   autoRegisterDiffusionProfiles: 0
   apvScenesData:
     m_ObsoleteSerializedBakingSets: []
-    serializedBounds: []
-    serializedHasVolumes: []
-    bakingSets: []
+    serializedBounds:
+    - sceneGUID: 36f483208b5d69244a48d4e759d5e058
+      bounds:
+        m_Center: {x: 0, y: 0, z: 0}
+        m_Extent: {x: 81, y: 81, z: 81}
+    serializedHasVolumes:
+    - sceneGUID: 36f483208b5d69244a48d4e759d5e058
+      hasProbeVolumes: 0
+    bakingSets:
+    - {fileID: 11400000, guid: 6fc8dc1f713c9c54b95dd64da9a99ff6, type: 2}
     m_LightingScenario: Default
   m_Version: 8
   m_ShaderVariantLogLevel: 0

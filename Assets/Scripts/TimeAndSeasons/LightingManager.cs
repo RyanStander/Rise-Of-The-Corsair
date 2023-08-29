@@ -67,16 +67,18 @@ namespace TimeAndSeasons
                 return;
 
             directionalLight.color = preset.directionalColor.Evaluate(timePercent);
-            //-90 to 0 should not rotate -180 to -90
+
             var xRotation = (timePercent * 360) - 90;
-            xRotation = xRotation switch
+            
+            //-90 to 0 should not rotate -180 to -90
+            /*xRotation = xRotation switch
             {
                 //if between 0 and -90
                 < 0 and >= -90 => 0,
                 //else if between -90 and -180
                 < 270 and > 180 => -180,
                 _ => xRotation
-            };
+            };*/
 
             directionalLight.transform.localRotation = Quaternion.Euler(new Vector3(xRotation, sunAngle, 0));
         }

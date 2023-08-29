@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1518.5455, g: 4782.7417, b: 9660.904, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -94,8 +94,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 6310ebca4c19a10449ccfd40eb2bd758, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: c5043be0755e35546ac65571667e6642, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -212,7 +212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 359450375}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21777052, y: 0.000000017976802, z: -0.0000000040110835, w: 0.976}
+  m_LocalRotation: {x: 0.18090291, y: -0.000000014655308, z: 0.0000000026956637, w: 0.98350096}
   m_LocalPosition: {x: 0, y: 25, z: -75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -456,7 +456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474597059}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.21777052, y: 0.000000017976802, z: -0.0000000040110835, w: 0.976}
+  m_LocalRotation: {x: 0.18090291, y: -0.000000014655308, z: 0.0000000026956637, w: 0.98350096}
   m_LocalPosition: {x: 0, y: 25, z: -75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -637,9 +637,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 565591421245593577, guid: c41e1e991ae11cd4bbf471289428c1d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1394220325058103916, guid: c41e1e991ae11cd4bbf471289428c1d8, type: 3}
       propertyPath: m_Name
       value: SceneEffects
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633577618334884842, guid: c41e1e991ae11cd4bbf471289428c1d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.000000023325025
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633577618334884842, guid: c41e1e991ae11cd4bbf471289428c1d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.00000003696794
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633577618334884842, guid: c41e1e991ae11cd4bbf471289428c1d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5336144
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633577618334884842, guid: c41e1e991ae11cd4bbf471289428c1d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.8457279
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633577618334884842, guid: c41e1e991ae11cd4bbf471289428c1d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 22.72
       objectReference: {fileID: 0}
     - target: {fileID: 5585246300897623929, guid: c41e1e991ae11cd4bbf471289428c1d8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -680,6 +704,10 @@ PrefabInstance:
     - target: {fileID: 5585246300897623929, guid: c41e1e991ae11cd4bbf471289428c1d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7573329734580749306, guid: c41e1e991ae11cd4bbf471289428c1d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -761,7 +789,7 @@ MonoBehaviour:
   preset: {fileID: 11400000, guid: e84cc551eac5997469e64182ceb12c53, type: 2}
   dayNightSpeed: 1
   sunAngle: -180
-  timeOfDay: 9.8
+  timeOfDay: 22.3
   timeCurve:
     serializedVersion: 2
     m_Curve:
@@ -902,7 +930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9134111342436465087, guid: ce1e36ceb6f12eb4d95d9bbfb1ba0ec9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.222376
+      value: -3.5568218
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
