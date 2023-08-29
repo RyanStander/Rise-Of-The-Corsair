@@ -1,6 +1,6 @@
 using System;
 
-namespace Environment
+namespace TimeAndSeasons
 {
     public static class DateTimeUtilities
     {

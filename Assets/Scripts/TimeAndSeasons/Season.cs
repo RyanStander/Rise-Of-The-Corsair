@@ -1,4 +1,4 @@
-namespace Environment
+namespace TimeAndSeasons
 {
     public enum Season
     {
