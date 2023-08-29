@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TimeAndSeasons
+namespace Weather
 {
     /// <summary>
     /// The WindManager script is responsible for simulating and managing the dynamic wind system in the game.

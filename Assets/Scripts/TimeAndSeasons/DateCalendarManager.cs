@@ -8,7 +8,7 @@ namespace TimeAndSeasons
     /// <summary>
     ///
     /// </summary>
-    public class DateCalendar : MonoBehaviour
+    public class DateCalendarManager : MonoBehaviour
     {
         #region Serialized Fields
 
@@ -25,7 +25,7 @@ namespace TimeAndSeasons
         #region Private Variables
 
         private int currentYear;
-        private Season currentSeason;
+        public Season currentSeason{ get; private set; }
         private int currentMonth;
         private int currentDay;
         private int totalDaysInMonth;
@@ -37,6 +37,11 @@ namespace TimeAndSeasons
             EventManager.currentManager.Subscribe(EventType.NewDay, OnNewDay);
         }
 
+        private void OnDisable()
+        {
+            EventManager.currentManager.Unsubscribe(EventType.NewDay, OnNewDay);
+        }
+
         private void OnNewDay(EventData eventData)
         {
             if (!eventData.IsEventOfType(out NewDay _))
@@ -45,12 +50,7 @@ namespace TimeAndSeasons
             AdvanceDay();
         }
 
-        private void OnDisable()
-        {
-            EventManager.currentManager.Unsubscribe(EventType.NewDay, OnNewDay);
-        }
-
-        private void Start()
+        private void Awake()
         {
             SetupCalendar();
         }
@@ -72,7 +72,7 @@ namespace TimeAndSeasons
             CheckForNewSeason();
 
             // Call event to notify initial date
-            EventManager.currentManager.AddEvent(new DateChange(currentDay, currentMonth, currentSeason, currentYear));
+            //EventManager.currentManager.AddEvent(new DateChange(currentDay, currentMonth, currentSeason, currentYear));
         }
 
         // Method to advance the day
@@ -87,7 +87,7 @@ namespace TimeAndSeasons
             //Debug.Log($"Day: {currentDay} Month: {currentMonth} Season: {currentSeason} Year: {currentYear}");
 
             // Call event to notify date change
-            EventManager.currentManager.AddEvent(new DateChange(currentDay, currentMonth, currentSeason, currentYear));
+            //EventManager.currentManager.AddEvent(new DateChange(currentDay, currentMonth, currentSeason, currentYear));
         }
 
         /// <summary>

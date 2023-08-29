@@ -55,7 +55,7 @@ namespace TimeAndSeasons
 
         private void FixedUpdate()
         {
-            EventManager.currentManager.AddEvent(new SendTimeStrength(timeCurve.Evaluate(timeOfDay / 24f)));
+            //EventManager.currentManager.AddEvent(new SendTimeStrength(timeCurve.Evaluate(timeOfDay / 24f)));
         }
 
         private void UpdateLighting(float timePercent)
@@ -69,7 +69,7 @@ namespace TimeAndSeasons
             directionalLight.color = preset.directionalColor.Evaluate(timePercent);
 
             var xRotation = (timePercent * 360) - 90;
-            
+
             //-90 to 0 should not rotate -180 to -90
             /*xRotation = xRotation switch
             {
