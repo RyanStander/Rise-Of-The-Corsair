@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f3215d3213345fb9d905f742210ad94, type: 3}
+  m_Name: WeatherDataSet
+  m_EditorClassIdentifier: 
+  SpringWeatherData:
+  - WeatherPreset: {fileID: 11400000, guid: 83eb78bd3eebbeb4986d6d156952ab86, type: 2}
+    ChanceOfOccurrence: 59
+  - WeatherPreset: {fileID: 11400000, guid: b1a949bf076a1df4d93589f6da953bec, type: 2}
+    ChanceOfOccurrence: 84
+  - WeatherPreset: {fileID: 11400000, guid: 94a2ea3851b5e6048ab13967f7ced6e7, type: 2}
+    ChanceOfOccurrence: 31
+  - WeatherPreset: {fileID: 11400000, guid: 9552645f7d7e3e74d9366968c4ff40a4, type: 2}
+    ChanceOfOccurrence: 80
+  SummerWeatherData:
+  - WeatherPreset: {fileID: 11400000, guid: 83eb78bd3eebbeb4986d6d156952ab86, type: 2}
+    ChanceOfOccurrence: 50
+  - WeatherPreset: {fileID: 11400000, guid: b1a949bf076a1df4d93589f6da953bec, type: 2}
+    ChanceOfOccurrence: 52
+  - WeatherPreset: {fileID: 11400000, guid: 94a2ea3851b5e6048ab13967f7ced6e7, type: 2}
+    ChanceOfOccurrence: 52
+  - WeatherPreset: {fileID: 11400000, guid: 9552645f7d7e3e74d9366968c4ff40a4, type: 2}
+    ChanceOfOccurrence: 50
+  AutumnWeatherData:
+  - WeatherPreset: {fileID: 11400000, guid: 83eb78bd3eebbeb4986d6d156952ab86, type: 2}
+    ChanceOfOccurrence: 61
+  - WeatherPreset: {fileID: 11400000, guid: b1a949bf076a1df4d93589f6da953bec, type: 2}
+    ChanceOfOccurrence: 65
+  - WeatherPreset: {fileID: 11400000, guid: 94a2ea3851b5e6048ab13967f7ced6e7, type: 2}
+    ChanceOfOccurrence: 65
+  - WeatherPreset: {fileID: 11400000, guid: 9552645f7d7e3e74d9366968c4ff40a4, type: 2}
+    ChanceOfOccurrence: 44
+  WinterWeatherData:
+  - WeatherPreset: {fileID: 11400000, guid: 83eb78bd3eebbeb4986d6d156952ab86, type: 2}
+    ChanceOfOccurrence: 47
+  - WeatherPreset: {fileID: 11400000, guid: b1a949bf076a1df4d93589f6da953bec, type: 2}
+    ChanceOfOccurrence: 21
+  - WeatherPreset: {fileID: 11400000, guid: 94a2ea3851b5e6048ab13967f7ced6e7, type: 2}
+    ChanceOfOccurrence: 46
+  - WeatherPreset: {fileID: 11400000, guid: 9552645f7d7e3e74d9366968c4ff40a4, type: 2}
+    ChanceOfOccurrence: 19
