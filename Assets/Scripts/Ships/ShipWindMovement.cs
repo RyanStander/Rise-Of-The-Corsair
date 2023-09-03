@@ -120,19 +120,35 @@ namespace Ships
         /// </summary>
         private void MoveShip()
         {
-            //angle between the current wind direction and the ship's rotation
-            var angle = Mathf.DeltaAngle(currentWindDirection, transform.eulerAngles.y);
-
             //the ships highest speed is when the angle matches the best sailing point, the higher it becomes the less speed the ship has, anything below the best sailing point stays the same
-            var speedModifier = Mathf.Clamp(1f - angle / bestSailingDirection, 0f, 1f);
+            var speedModifier = DetermineSpeedModifier();
 
-            var force = transform.forward * (currentWindSpeed * speedModifier * shipData.Stats.speedModifier);
+            //TODO: replace 50 with currentWindSpeed
+            var force = transform.forward * Mathf.Clamp(50 * speedModifier * shipData.Stats.speedModifier,
+                shipData.Stats.minSpeed, shipData.Stats.maxSpeed);
+            //Debug.Log($"Wind Speed: {currentWindSpeed} | Speed Modifier: {speedModifier} | Ship Speed Modifier: {shipData.Stats.speedModifier}");
 
             //debug of all the values and final force result
-            //Debug.Log($"Current wind speed: {currentWindSpeed} | Speed Modifier: {speedModifier} | Ship Speed Modifier : {shipData.Stats.speedModifier} | Force: {force}");
-
             //apply the force to the ship
-            shipRigidbody.AddForce(force/10);
+            shipRigidbody.AddForce(force);
+        }
+
+        private float DetermineSpeedModifier()
+        {
+            //angle between the current wind direction and the ship's rotation
+            var currentDeltaAngle = Mathf.Abs(Mathf.DeltaAngle(currentWindDirection, transform.eulerAngles.y));
+
+            //the speed modifer is highest when the angle matches the best sailing point,
+            //the higher it becomes the less speed the ship has, anything below the best sailing point stays the same
+            var speedModifier =
+                Mathf.Clamp(1 - (Mathf.Max(currentDeltaAngle - bestSailingDirection,0) / Mathf.Max(180 - bestSailingDirection,0.001f)), 0, 1);
+
+            Debug.Log(speedModifier);
+
+            return speedModifier;
         }
     }
 }
+//1-(0/180),0,1)=1
+//1-(45/180),0,1)=0.75
+//1-(180/180)=0

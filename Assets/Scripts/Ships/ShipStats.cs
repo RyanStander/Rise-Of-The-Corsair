@@ -17,6 +17,7 @@ namespace Ships
         [field: SerializeField] public ShipWindDirections bestSailingPoint { get; private set; }
         [field: SerializeField] public float speedModifier { get; private set; }
         [field: SerializeField] public float maxSpeed { get; private set; }
+        [field: SerializeField] public float minSpeed { get; private set; }
         [field: SerializeField] public int maxCannons { get; private set; }
         [field: SerializeField] public int maxCrew { get; private set; }
         [field: SerializeField] public int minCrew { get; private set; }
