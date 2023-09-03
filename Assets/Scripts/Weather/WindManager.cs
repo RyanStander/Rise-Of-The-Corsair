@@ -3,7 +3,6 @@ using Events;
 using TimeAndSeasons;
 using UnityEngine;
 using UnityEngine.Serialization;
-using EventType = Events.EventType;
 using Random = UnityEngine.Random;
 
 namespace Weather
@@ -55,12 +54,12 @@ namespace Weather
 
         private void OnEnable()
         {
-            EventManager.currentManager.Subscribe(EventType.WeatherHasChanged, OnWeatherHasChanged);
+            EventManager.currentManager.Subscribe(EventIdentifiers.WeatherHasChanged, OnWeatherHasChanged);
         }
 
         private void OnDisable()
         {
-            EventManager.currentManager.Unsubscribe(EventType.WeatherHasChanged, OnWeatherHasChanged);
+            EventManager.currentManager.Unsubscribe(EventIdentifiers.WeatherHasChanged, OnWeatherHasChanged);
         }
 
         private void OnWeatherHasChanged(EventData eventData)

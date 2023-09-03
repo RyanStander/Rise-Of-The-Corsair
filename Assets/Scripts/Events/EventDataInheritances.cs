@@ -13,7 +13,7 @@ namespace Events
         public readonly int CurrentYear;
 
         public DateChange(int currentDay, int currentMonth, Season currentSeason, int currentYear) : base(
-            EventType.DateChange)
+            EventIdentifiers.DateChange)
         {
             CurrentDay = currentDay;
             CurrentMonth = currentMonth;
@@ -25,7 +25,7 @@ namespace Events
     public class SendTimeStrength : EventData
     {
         public readonly float TimeStrength;
-        public SendTimeStrength(float timeStrength) : base(EventType.SendTimeStrength)
+        public SendTimeStrength(float timeStrength) : base(EventIdentifiers.SendTimeStrength)
         {
             TimeStrength = timeStrength;
         }
@@ -33,7 +33,7 @@ namespace Events
 
     public class NewDay : EventData
     {
-        public NewDay():base(EventType.NewDay)
+        public NewDay():base(EventIdentifiers.NewDay)
         {
 
         }
@@ -42,9 +42,20 @@ namespace Events
     public class WeatherHasChanged : EventData
     {
         public readonly WeatherPreset WeatherPreset;
-        public WeatherHasChanged(WeatherPreset weatherPreset) : base(EventType.WeatherHasChanged)
+        public WeatherHasChanged(WeatherPreset weatherPreset) : base(EventIdentifiers.WeatherHasChanged)
         {
             WeatherPreset = weatherPreset;
+        }
+    }
+
+    public class NewWind : EventData
+    {
+        public readonly float WindSpeed;
+        public readonly float WindDirection;
+        public NewWind(float windSpeed, float windDirection) : base(EventIdentifiers.NewWind)
+        {
+            WindSpeed = windSpeed;
+            WindDirection = windDirection;
         }
     }
 }

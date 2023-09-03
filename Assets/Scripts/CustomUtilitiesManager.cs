@@ -22,7 +22,7 @@ public static class CustomUtilitiesManager
         else if (throwError)
         {
             throw new System.InvalidCastException(string.Concat("Error: EventData class with EventType.",
-                eventData.eventType, " was received but is not of class ", typeof(T).FullName, "."));
+                eventData.EventIdentifiers, " was received but is not of class ", typeof(T).FullName, "."));
         }
 
         outEvent = null;
@@ -45,7 +45,7 @@ public static class CustomUtilitiesManager
         else if (throwError)
         {
             throw new System.InvalidCastException(string.Concat("Error: EventData class with EventType.",
-                eventData.eventType, " was received but is not of class ", typeof(T).FullName, "."));
+                eventData.EventIdentifiers, " was received but is not of class ", typeof(T).FullName, "."));
         }
 
         return false;

@@ -1,7 +1,6 @@
 using System;
 using Events;
 using UnityEngine;
-using EventType = Events.EventType;
 
 namespace TimeAndSeasons
 {
@@ -34,12 +33,12 @@ namespace TimeAndSeasons
 
         private void OnEnable()
         {
-            EventManager.currentManager.Subscribe(EventType.NewDay, OnNewDay);
+            EventManager.currentManager.Subscribe(EventIdentifiers.NewDay, OnNewDay);
         }
 
         private void OnDisable()
         {
-            EventManager.currentManager.Unsubscribe(EventType.NewDay, OnNewDay);
+            EventManager.currentManager.Unsubscribe(EventIdentifiers.NewDay, OnNewDay);
         }
 
         private void OnNewDay(EventData eventData)

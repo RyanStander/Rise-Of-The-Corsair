@@ -1,6 +1,5 @@
 using Events;
 using UnityEngine;
-using EventType = Events.EventType;
 
 namespace TimeAndSeasons
 {
@@ -12,12 +11,12 @@ namespace TimeAndSeasons
         [SerializeField] private bool approachingDaytime;
         private void OnEnable()
         {
-            EventManager.currentManager.Subscribe(EventType.SendTimeStrength, OnReceiveTimeStrength);
+            EventManager.currentManager.Subscribe(EventIdentifiers.SendTimeStrength, OnReceiveTimeStrength);
         }
 
         private void OnDisable()
         {
-            EventManager.currentManager.Unsubscribe(EventType.SendTimeStrength, OnReceiveTimeStrength);
+            EventManager.currentManager.Unsubscribe(EventIdentifiers.SendTimeStrength, OnReceiveTimeStrength);
         }
 
         private void Update()

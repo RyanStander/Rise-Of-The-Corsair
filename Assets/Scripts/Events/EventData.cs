@@ -4,11 +4,11 @@ namespace Events
 {
     public class EventData
     {
-        public readonly EventType eventType;
+        public readonly EventIdentifiers EventIdentifiers;
 
-        public EventData(EventType type)
+        public EventData(EventIdentifiers identifiers)
         {
-            eventType = type;
+            EventIdentifiers = identifiers;
         }
     }
 }
