@@ -712,6 +712,8 @@ GameObject:
   - component: {fileID: 8739332531573743190}
   - component: {fileID: 2349626684363690822}
   - component: {fileID: 8637638421420982846}
+  - component: {fileID: 4190680601713946485}
+  - component: {fileID: 3126376540316379090}
   m_Layer: 0
   m_Name: Schooner
   m_TagString: Untagged
@@ -744,7 +746,7 @@ Rigidbody:
   m_GameObject: {fileID: 8215559743071552748}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -761,7 +763,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &8637638421420982846
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -783,6 +785,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 12.359005, y: 7.5320263, z: 55.8439}
   m_Center: {x: -0.12674332, y: 3.2660131, z: -13.348337}
+--- !u!114 &4190680601713946485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8215559743071552748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c669b83697e1402da40af776fb11a80d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stats: {fileID: 11400000, guid: 3d9e30bb5dd2c1d4ba157bf704f8736f, type: 2}
+--- !u!114 &3126376540316379090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8215559743071552748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b963013de42496da945b3e0b1172b61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipData: {fileID: 4190680601713946485}
+  shipRigidbody: {fileID: 2349626684363690822}
 --- !u!1 &8924947118593401205
 GameObject:
   m_ObjectHideFlags: 0
@@ -1018,7 +1047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca16791f942a29743bb643847a4fc484, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.2103224
+      value: -1.7331861
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca16791f942a29743bb643847a4fc484, type: 3}
       propertyPath: m_LocalPosition.z

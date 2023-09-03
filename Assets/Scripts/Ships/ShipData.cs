@@ -4,7 +4,7 @@ namespace Ships
 {
     public class ShipData : MonoBehaviour
     {
-        public ShipStats Stats { get; private set; }
+        public ShipStats Stats;
         public float SailCurrentHealth { get; private set; }
         public float SailMaxHealth { get; private set; }
         public float HullCurrentHealth { get; private set; }

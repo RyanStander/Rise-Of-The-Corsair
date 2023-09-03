@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db93c36bfbde4b718ba79478c544189e, type: 3}
+  m_Name: Schooner
+  m_EditorClassIdentifier: 
+  <shipPrefab>k__BackingField: {fileID: 8215559743071552748, guid: ce1e36ceb6f12eb4d95d9bbfb1ba0ec9, type: 3}
+  <rarity>k__BackingField: 0
+  <size>k__BackingField: 0
+  <maneuverability>k__BackingField: 4
+  <durability>k__BackingField: 0
+  <bestSailingPoint>k__BackingField: 2
+  <speedModifier>k__BackingField: 1
+  <maxSpeed>k__BackingField: 40
+  <maxCannons>k__BackingField: 16
+  <maxCrew>k__BackingField: 100
+  <minCrew>k__BackingField: 10
+  <cargoCapacity>k__BackingField: 50
+  <basicSalePrice>k__BackingField: 300

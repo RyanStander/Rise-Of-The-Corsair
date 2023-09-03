@@ -50,7 +50,7 @@ namespace Ships
 
         private void OnEnable()
         {
-            EventManager.currentManager.Subscribe(EventIdentifiers.NewDay, OnNewWind);
+            EventManager.currentManager.Subscribe(EventIdentifiers.NewWind, OnNewWind);
         }
 
         private void OnDisable()
@@ -60,7 +60,7 @@ namespace Ships
 
         private void OnNewWind(EventData eventData)
         {
-            if(!eventData.IsEventOfType(out NewWind newWind))
+            if (!eventData.IsEventOfType(out NewWind newWind))
                 return;
 
             currentWindDirection = newWind.WindDirection;
@@ -120,14 +120,19 @@ namespace Ships
         /// </summary>
         private void MoveShip()
         {
-            //first determine the angle between the ship's forward vector and the wind direction
-            var angle = Vector3.Angle(transform.forward, Vector3.forward + new Vector3(currentWindDirection, 0f, 0f));
+            //angle between the current wind direction and the ship's rotation
+            var angle = Mathf.DeltaAngle(currentWindDirection, transform.eulerAngles.y);
 
             //the ships highest speed is when the angle matches the best sailing point, the higher it becomes the less speed the ship has, anything below the best sailing point stays the same
-            var speedModifier = Mathf.Clamp(1f - (angle / bestSailingDirection), 0f, 1f);
+            var speedModifier = Mathf.Clamp(1f - angle / bestSailingDirection, 0f, 1f);
+
+            var force = transform.forward * (currentWindSpeed * speedModifier * shipData.Stats.speedModifier);
+
+            //debug of all the values and final force result
+            //Debug.Log($"Current wind speed: {currentWindSpeed} | Speed Modifier: {speedModifier} | Ship Speed Modifier : {shipData.Stats.speedModifier} | Force: {force}");
 
             //apply the force to the ship
-            shipRigidbody.AddForce(transform.forward * (currentWindSpeed * speedModifier * shipData.Stats.speedModifier));
+            shipRigidbody.AddForce(force/10);
         }
     }
 }

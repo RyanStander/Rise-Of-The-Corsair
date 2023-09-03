@@ -112,7 +112,7 @@ namespace Weather
             newWindDirection = Random.Range(0f, 360f);
             windDirectionChangeRate = Random.Range(minWindDirectionChangeRate, maxWindDirectionChangeRate);
 
-            Debug.Log("Changing wind to: " + newWindDirection + "degrees at " + newWindSpeed + " knots.");
+            EventManager.currentManager.AddEvent(new NewWind(newWindSpeed,newWindDirection));
         }
 
         private void SetNewWind()
@@ -127,7 +127,7 @@ namespace Weather
 
             timeSinceLastWindChange = Random.Range(minTimeBetweenWindChanges, maxTimeBetweenWindChanges) + Time.time;
 
-            Debug.Log("Changing wind to: " + newWindDirection + "degrees at " + newWindSpeed + " knots.");
+            EventManager.currentManager.AddEvent(new NewWind(newWindSpeed,newWindDirection));
         }
     }
 }
