@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using Ships.Enums;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Ships
 {
@@ -10,7 +12,9 @@ namespace Ships
     public class CannonPointHolder : MonoBehaviour
     {
         [SerializeField] private GameObject cannonBallPrefab;
+        [SerializeField] private GameObject explosionPrefab;
         [SerializeField] private float cannonBallSpeed;
+        [SerializeField] private Vector2 minToMaxFireDelay = new Vector2(0, 0.5f);
         [field: SerializeField] public Transform[] StarboardCannonPoints { get; private set; }
         [field: SerializeField] public Transform[] PortCannonPoints { get; private set; }
 
@@ -43,12 +47,25 @@ namespace Ships
                     return;
                 }
 
-                //Instantiate cannonball
-                var cannonBall = Instantiate(cannonBallPrefab, cannonPoints[i].position, cannonPoints[i].rotation);
-                //get rigidbody and add force in the forward direction
-                var cannonBallRb = cannonBall.GetComponent<Rigidbody>();
-                cannonBallRb.AddForce(cannonPoints[i].forward * cannonBallSpeed, ForceMode.Impulse);
+                StartCoroutine(FireCannon(Random.Range(minToMaxFireDelay.x, minToMaxFireDelay.y), cannonPoints[i]));
             }
+        }
+
+        private IEnumerator FireCannon(float waitTime, Transform cannonPoint)
+        {
+            yield return new WaitForSeconds(waitTime);
+
+            var position = cannonPoint.position;
+            var rotation = cannonPoint.rotation;
+
+            //Instantiate cannonball
+            var cannonBall = Instantiate(cannonBallPrefab, position, rotation);
+            //get rigidbody and add force in the forward direction
+            var cannonBallRb = cannonBall.GetComponent<Rigidbody>();
+            cannonBallRb.AddForce(cannonPoint.forward * cannonBallSpeed, ForceMode.Impulse);
+
+            //Instantiate explosion
+            Instantiate(explosionPrefab, position, rotation);
         }
     }
 }
