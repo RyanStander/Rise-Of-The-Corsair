@@ -143,8 +143,6 @@ namespace Ships
             var speedModifier =
                 Mathf.Clamp(1 - (Mathf.Max(currentDeltaAngle - bestSailingDirection,0) / Mathf.Max(180 - bestSailingDirection,0.001f)), 0, 1);
 
-            Debug.Log(speedModifier);
-
             return speedModifier;
         }
     }
