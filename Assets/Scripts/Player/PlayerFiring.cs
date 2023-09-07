@@ -28,7 +28,7 @@ namespace Player
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 //cannonPointHolder.FireCannons(shipData.SideCannonCount, ShipSide.Starboard);
-                cannonPointHolder.FireCannons(6, ShipSide.Starboard);
+                cannonPointHolder.FireCannons(6, ShipSide.Port);
             }
         }
     }
