@@ -17,10 +17,10 @@ MonoBehaviour:
   <size>k__BackingField: 0
   <maneuverability>k__BackingField: 4
   <durability>k__BackingField: 0
-  <bestSailingPoint>k__BackingField: 2
+  <bestSailingPoint>k__BackingField: 1
   <speedModifier>k__BackingField: 1
-  <maxSpeed>k__BackingField: 20
-  <minSpeed>k__BackingField: 1
+  <maxSpeed>k__BackingField: 2
+  <minSpeed>k__BackingField: 0.25
   <maxCannons>k__BackingField: 16
   <maxCrew>k__BackingField: 100
   <minCrew>k__BackingField: 10

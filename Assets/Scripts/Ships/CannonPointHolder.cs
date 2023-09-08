@@ -13,20 +13,23 @@ namespace Ships
     {
         [SerializeField] private GameObject cannonBallPrefab;
         [SerializeField] private GameObject explosionPrefab;
+        [SerializeField] private AudioClip cannonFireSound;
         [SerializeField] private float cannonBallSpeed;
         [SerializeField] private Vector2 minToMaxFireDelay = new Vector2(0, 0.5f);
         [field: SerializeField] public Transform[] StarboardCannonPoints { get; private set; }
+        [field: SerializeField] public AudioSource[] StarboardCannonAudioSources { get; private set; }
         [field: SerializeField] public Transform[] PortCannonPoints { get; private set; }
+        [field: SerializeField] public AudioSource[] PortCannonAudioSources { get; private set; }
 
         public void FireCannons(int sideCannonCount, ShipSide firingSide)
         {
             switch (firingSide)
             {
                 case ShipSide.Starboard:
-                    FireSpecifiedCannon(StarboardCannonPoints, sideCannonCount);
+                    FireSpecifiedCannon(StarboardCannonPoints, StarboardCannonAudioSources, sideCannonCount);
                     break;
                 case ShipSide.Port:
-                    FireSpecifiedCannon(PortCannonPoints, sideCannonCount);
+                    FireSpecifiedCannon(PortCannonPoints, PortCannonAudioSources, sideCannonCount);
                     break;
                 case ShipSide.Bow:
                     break;
@@ -37,7 +40,7 @@ namespace Ships
             }
         }
 
-        private void FireSpecifiedCannon(Transform[] cannonPoints, int sideCannonCount)
+        private void FireSpecifiedCannon(Transform[] cannonPoints, AudioSource[] cannonAudioSources, int sideCannonCount)
         {
             for (var i = 0; i < sideCannonCount; i++)
             {
@@ -47,11 +50,11 @@ namespace Ships
                     return;
                 }
 
-                StartCoroutine(FireCannon(Random.Range(minToMaxFireDelay.x, minToMaxFireDelay.y), cannonPoints[i]));
+                StartCoroutine(FireCannon(Random.Range(minToMaxFireDelay.x, minToMaxFireDelay.y), cannonPoints[i], cannonAudioSources[i]));
             }
         }
 
-        private IEnumerator FireCannon(float waitTime, Transform cannonPoint)
+        private IEnumerator FireCannon(float waitTime, Transform cannonPoint, AudioSource cannonAudioSource)
         {
             yield return new WaitForSeconds(waitTime);
 
@@ -63,6 +66,9 @@ namespace Ships
             //get rigidbody and add force in the forward direction
             var cannonBallRb = cannonBall.GetComponent<Rigidbody>();
             cannonBallRb.AddForce(cannonPoint.forward * cannonBallSpeed, ForceMode.Impulse);
+
+            //Play cannon fire sound
+            cannonAudioSource.PlayOneShot(cannonFireSound);
 
             //Instantiate explosion
             Instantiate(explosionPrefab, position, rotation);
