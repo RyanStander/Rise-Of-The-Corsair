@@ -24,11 +24,11 @@ namespace Player
 
         private void Update()
         {
-            if (shipReloading.CanFire() && Input.GetKeyDown(KeyCode.Space))
+            if (shipReloading.CanFire(playerAiming.CurrentAimSide) && Input.GetKeyDown(KeyCode.Space))
             {
                 //cannonPointHolder.FireCannons(shipData.SideCannonCount, ShipSide.Starboard);
                 cannonPointHolder.FireCannons(6, playerAiming.CurrentAimSide);
-                shipReloading.StartReload();
+                shipReloading.StartReload(playerAiming.CurrentAimSide);
             }
         }
     }
