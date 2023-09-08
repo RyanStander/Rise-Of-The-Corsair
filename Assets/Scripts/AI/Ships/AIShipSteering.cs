@@ -62,11 +62,11 @@ namespace AI.Ships
 
                 switch (aimDirection)
                 {
-                    case ShipSide.Starboard://Right direction
-                        toRotation*= Quaternion.Euler(0, 90, 0);
+                    case ShipSide.Starboard: //Right direction
+                        toRotation *= Quaternion.Euler(0, 90, 0);
                         break;
-                    case ShipSide.Port://Left direction
-                        toRotation*= Quaternion.Euler(0, -90, 0);
+                    case ShipSide.Port: //Left direction
+                        toRotation *= Quaternion.Euler(0, -90, 0);
                         break;
                     case ShipSide.Bow:
                         break;
@@ -78,6 +78,11 @@ namespace AI.Ships
 
                 transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, turnModifier * Time.deltaTime);
             }
+        }
+
+        public bool isChasing()
+        {
+            return Vector3.Distance(transform.position, playerShip.transform.position) > distanceToPlayer;
         }
 
         private ShipSide DetermineAimDirection()
