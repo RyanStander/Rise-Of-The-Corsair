@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db93c36bfbde4b718ba79478c544189e, type: 3}
-  m_Name: Schooner
+  m_Name: Brig
   m_EditorClassIdentifier: 
   <shipPrefab>k__BackingField: {fileID: 8215559743071552748, guid: ce1e36ceb6f12eb4d95d9bbfb1ba0ec9, type: 3}
-  <rarity>k__BackingField: 0
-  <size>k__BackingField: 0
-  <maneuverability>k__BackingField: 4
-  <durability>k__BackingField: 0
-  <bestSailingPoint>k__BackingField: 2
+  <rarity>k__BackingField: 1
+  <size>k__BackingField: 2
+  <maneuverability>k__BackingField: 3
+  <durability>k__BackingField: 1
+  <bestSailingPoint>k__BackingField: 1
   <speedModifier>k__BackingField: 1
-  <maxSpeed>k__BackingField: 5
+  <maxSpeed>k__BackingField: 10
   <minSpeed>k__BackingField: 0.25
-  <maxCannons>k__BackingField: 16
-  <maxCrew>k__BackingField: 100
-  <minCrew>k__BackingField: 10
-  <cargoCapacity>k__BackingField: 50
-  <basicSalePrice>k__BackingField: 300
+  <maxCannons>k__BackingField: 24
+  <maxCrew>k__BackingField: 150
+  <minCrew>k__BackingField: 14
+  <cargoCapacity>k__BackingField: 70
+  <basicSalePrice>k__BackingField: 450
