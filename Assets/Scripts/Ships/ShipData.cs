@@ -10,6 +10,7 @@ namespace Ships
         public float HullCurrentHealth { get; private set; }
         public float HullMaxHealth { get; private set; }
         public int SideCannonCount { get; private set; }
+        public int CurrentCrewCount { get; private set; }
         public ShipUpgrades Upgrades { get; private set; }
     }
 }

@@ -1,6 +1,4 @@
-using System;
 using Ships;
-using Ships.Enums;
 using UnityEngine;
 
 namespace Player
@@ -10,6 +8,7 @@ namespace Player
         [SerializeField] private ShipData shipData;
         [SerializeField] private CannonPointHolder cannonPointHolder;
         [SerializeField] private PlayerAiming playerAiming;
+        [SerializeField] private ShipReloading shipReloading;
 
         private void OnValidate()
         {
@@ -19,14 +18,17 @@ namespace Player
                 cannonPointHolder = GetComponentsInChildren<CannonPointHolder>(true)[0];
             if (playerAiming == null)
                 playerAiming = GetComponent<PlayerAiming>();
+            if (shipReloading == null)
+                shipReloading = GetComponent<ShipReloading>();
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (shipReloading.CanFire() && Input.GetKeyDown(KeyCode.Space))
             {
                 //cannonPointHolder.FireCannons(shipData.SideCannonCount, ShipSide.Starboard);
                 cannonPointHolder.FireCannons(6, playerAiming.CurrentAimSide);
+                shipReloading.StartReload();
             }
         }
     }
