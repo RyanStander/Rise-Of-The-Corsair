@@ -954,6 +954,7 @@ GameObject:
   - component: {fileID: 8739332531573743190}
   - component: {fileID: 2349626684363690822}
   - component: {fileID: 8637638421420982846}
+  - component: {fileID: 254134186175849801}
   - component: {fileID: 4190680601713946485}
   - component: {fileID: 3126376540316379090}
   - component: {fileID: 5868225285238020163}
@@ -1032,6 +1033,24 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 12.359005, y: 7.5320263, z: 55.8439}
   m_Center: {x: -0.12674332, y: 3.2660131, z: 1.59}
+--- !u!114 &254134186175849801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8215559743071552748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd2f6b80eee4319b22a30db9add2727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipData: {fileID: 4190680601713946485}
+  shipWindMovement: {fileID: 3126376540316379090}
+  playerShipSteering: {fileID: 5868225285238020163}
+  playerFiring: {fileID: 1561456576704035926}
+  playerAiming: {fileID: 7096223210722368429}
+  shipReloading: {fileID: 6357055051439117876}
 --- !u!114 &4190680601713946485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2192,7 +2211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca16791f942a29743bb643847a4fc484, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.2607741
+      value: -4.254699
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca16791f942a29743bb643847a4fc484, type: 3}
       propertyPath: m_LocalPosition.z

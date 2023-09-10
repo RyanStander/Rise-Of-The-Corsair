@@ -25,7 +25,7 @@ namespace Player
             maneuverabilityModifier = GetManeuverabilityModifier();
         }
 
-        private void Update()
+        public void HandleShipSteering()
         {
             TurnShip();
         }

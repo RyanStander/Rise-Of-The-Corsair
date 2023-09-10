@@ -21,7 +21,7 @@ namespace Player
             ;
         }
 
-        private void FixedUpdate()
+        public void HandlePlayerAiming()
         {
             EnterAim();
             ExitAim();
