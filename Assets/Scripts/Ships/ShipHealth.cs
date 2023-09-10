@@ -35,7 +35,6 @@ namespace Ships
 
         public void TakeDamage(float damage, ShipPart partHit, ProjectileType projectileType)
         {
-            Debug.Log("Ship took damage");
             var damageMultiplier = ShipDamageMultipliers.GetDamageMultiplier(projectileType);
 
             switch (partHit)

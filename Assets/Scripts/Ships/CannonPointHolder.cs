@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Projectiles;
 using Ships.Enums;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -64,8 +65,8 @@ namespace Ships
             //Instantiate cannonball
             var cannonBall = Instantiate(cannonBallPrefab, position, rotation);
             //get rigidbody and add force in the forward direction
-            var cannonBallRb = cannonBall.GetComponent<Rigidbody>();
-            cannonBallRb.AddForce(cannonPoint.forward * cannonBallSpeed, ForceMode.Impulse);
+            var projectile = cannonBall.GetComponent<BaseProjectile>();
+            projectile.SetProjectile(cannonPoint.forward * cannonBallSpeed, transform.root);
 
             //Play cannon fire sound
             cannonAudioSource.PlayOneShot(cannonFireSound);

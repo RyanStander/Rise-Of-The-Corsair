@@ -280,6 +280,7 @@ MonoBehaviour:
   projectileMeshRenderer: {fileID: 2836742997031037757}
   projectileDamage: 2
   projectileType: 0
+  hitEffects: {fileID: 11400000, guid: 9eba92bc1154a1844bf67c6e29c0e6dd, type: 2}
 --- !u!1001 &12475182224729059
 PrefabInstance:
   m_ObjectHideFlags: 0
