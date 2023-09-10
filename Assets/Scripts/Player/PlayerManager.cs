@@ -21,6 +21,8 @@ namespace Player
         [SerializeField] private PlayerFiring playerFiring;
         [SerializeField] private PlayerAiming playerAiming;
         [SerializeField] private ShipReloading shipReloading;
+        [SerializeField] private Animator animator;
+        private static readonly int IsSunk = Animator.StringToHash("IsSunk");
 
         private void OnValidate()
         {
@@ -41,10 +43,18 @@ namespace Player
                 playerAiming = GetComponent<PlayerAiming>();
             if (shipReloading == null)
                 shipReloading = GetComponent<ShipReloading>();
+            if (animator == null)
+                animator = GetComponentInChildren<Animator>();
         }
 
         private void FixedUpdate()
         {
+            if (shipData.IsSunk)
+            {
+                animator.SetBool(IsSunk, true);
+                return;
+            }
+
             shipWindMovement.HandleShipMovement();
             playerShipSteering.HandleShipSteering();
 

@@ -11,6 +11,7 @@ namespace Ships
     public class ShipWindMovement : MonoBehaviour
     {
         [SerializeField] private ShipData shipData;
+        [SerializeField] private ShipHealth shipHealth;
         [SerializeField] private Rigidbody shipRigidbody;
 
 
@@ -43,6 +44,9 @@ namespace Ships
         {
             if (shipData == null)
                 shipData = GetComponent<ShipData>();
+
+            if (shipHealth == null)
+                shipHealth = GetComponent<ShipHealth>();
 
             if (shipRigidbody == null)
                 shipRigidbody = GetComponent<Rigidbody>();
@@ -123,10 +127,11 @@ namespace Ships
             //the ships highest speed is when the angle matches the best sailing point, the higher it becomes the less speed the ship has, anything below the best sailing point stays the same
             var speedModifier = DetermineSpeedModifier();
 
-            //TODO: replace 50 with currentWindSpeed
-            var force = transform.forward * Mathf.Clamp(50 * speedModifier * shipData.Stats.speedModifier,
+            var force = transform.forward * Mathf.Clamp(currentWindSpeed * speedModifier * shipData.Stats.speedModifier,
                 shipData.Stats.minSpeed, shipData.Stats.maxSpeed);
-            //Debug.Log($"Wind Speed: {currentWindSpeed} | Speed Modifier: {speedModifier} | Ship Speed Modifier: {shipData.Stats.speedModifier}");
+
+            //the lower the health of the sails, the less force is applied to the ship
+            force *= shipHealth.SailCurrentHealth / shipData.Stats.SailMaxHealth;
 
             //debug of all the values and final force result
             //apply the force to the ship

@@ -15,7 +15,7 @@ namespace Ships
         public float CrewCurrentHealth { get; private set; }
         public float CannonCurrentHealth { get; private set; }
 
-        private float nonDirectDamageMultiplier = 0.5f;
+        private const float nonDirectDamageMultiplier = 0.5f;
 
         private void OnValidate()
         {
@@ -64,6 +64,15 @@ namespace Ships
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(partHit), partHit, null);
+            }
+
+            Debug.Log("Ship: " + gameObject.name + " hull health: " + HullCurrentHealth);
+            
+            if (HullCurrentHealth <= 0)
+            {
+                //ship is destroyed
+                shipData.ShipSunk();
+
             }
         }
 
