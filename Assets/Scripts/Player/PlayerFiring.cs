@@ -22,7 +22,7 @@ namespace Player
                 shipReloading = GetComponent<ShipReloading>();
         }
 
-        private void Update()
+        public void HandlePlayerFiring()
         {
             if (shipReloading.CanFire(playerAiming.CurrentAimSide) && Input.GetKeyDown(KeyCode.Space))
             {

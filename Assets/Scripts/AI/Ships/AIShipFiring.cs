@@ -33,7 +33,7 @@ namespace AI.Ships
                 playerShip = GameObject.FindGameObjectWithTag("Player");
         }
 
-        private void Update()
+        public void HandleShipFiring()
         {
             AttemptFire();
         }
@@ -44,15 +44,12 @@ namespace AI.Ships
             if (aiShipSteering.isChasing())
                 return;
 
-            Debug.Log("Attempting to fire");
-
             //check the direction of the player to determine which side to fire on
             var aimDirection = DetermineAimDirection();
 
             //check if the ship can fire on that side
             if (shipReloading.CanFire(aimDirection))
             {
-                Debug.Log("Firing");
                 //fire the cannons
                 cannonPointHolder.FireCannons(8, aimDirection);
                 shipReloading.StartReload(aimDirection);

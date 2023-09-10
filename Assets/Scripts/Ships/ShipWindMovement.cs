@@ -74,7 +74,7 @@ namespace Ships
             DetermineBestSailingPoint();
         }
 
-        private void FixedUpdate()
+        public void HandleShipMovement()
         {
             MoveShip();
         }
