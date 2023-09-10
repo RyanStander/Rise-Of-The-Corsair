@@ -6,6 +6,7 @@ namespace AI.Ships
 {
     [RequireComponent(typeof(ShipData))]
     [RequireComponent(typeof(ShipWindMovement))]
+    [RequireComponent(typeof(ShipHealth))]
     [RequireComponent(typeof(AIShipSteering))]
     [RequireComponent(typeof(AIShipFiring))]
     [RequireComponent(typeof(ShipReloading))]
@@ -18,6 +19,8 @@ namespace AI.Ships
         [SerializeField] private ShipReloading shipReloading;
         [SerializeField] private AIShipSteering aiShipSteering;
         [SerializeField] private AIShipFiring aiShipFiring;
+        [SerializeField] private Animator animator;
+        private static readonly int IsSunk = Animator.StringToHash("IsSunk");
 
         private void OnValidate()
         {
@@ -36,10 +39,18 @@ namespace AI.Ships
                 aiShipSteering = GetComponent<AIShipSteering>();
             if(aiShipFiring == null)
                 aiShipFiring = GetComponent<AIShipFiring>();
+            if (animator == null)
+                animator = GetComponentInChildren<Animator>();
         }
 
         private void FixedUpdate()
         {
+            if (shipData.IsSunk)
+            {
+                animator.SetBool(IsSunk, true);
+                return;
+            }
+
             shipWindMovement.HandleShipMovement();
             aiShipSteering.HandleShipSteering();
 
