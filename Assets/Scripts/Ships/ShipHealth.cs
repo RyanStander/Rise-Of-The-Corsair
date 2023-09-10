@@ -67,7 +67,7 @@ namespace Ships
             }
 
             Debug.Log("Ship: " + gameObject.name + " hull health: " + HullCurrentHealth);
-            
+
             if (HullCurrentHealth <= 0)
             {
                 //ship is destroyed

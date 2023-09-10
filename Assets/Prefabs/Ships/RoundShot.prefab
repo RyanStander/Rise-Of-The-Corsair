@@ -278,7 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileRigidbody: {fileID: 2405768922228985924}
   projectileMeshRenderer: {fileID: 2836742997031037757}
-  projectileDamage: 2
+  projectileDamage: 10
   projectileType: 0
   hitEffects: {fileID: 11400000, guid: 9eba92bc1154a1844bf67c6e29c0e6dd, type: 2}
 --- !u!1001 &12475182224729059

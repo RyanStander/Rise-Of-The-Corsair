@@ -49,6 +49,8 @@ namespace Player
 
         private void FixedUpdate()
         {
+            playerAiming.HandlePlayerAiming();
+            
             if (shipData.IsSunk)
             {
                 animator.SetBool(IsSunk, true);
@@ -58,7 +60,6 @@ namespace Player
             shipWindMovement.HandleShipMovement();
             playerShipSteering.HandleShipSteering();
 
-            playerAiming.HandlePlayerAiming();
             playerFiring.HandlePlayerFiring();
         }
     }
