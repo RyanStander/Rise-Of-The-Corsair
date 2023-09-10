@@ -16,7 +16,6 @@ namespace Projectiles
         [SerializeField] private ProjectileEffects hitEffects;
 
 
-
         private Transform originShipTransform;
         private const float DeSpawnHeight = -20f;
         private const float WaitTime = 2;
@@ -85,7 +84,8 @@ namespace Projectiles
             if (other.transform.root.TryGetComponent<ShipHealth>(out var shipHealth))
             {
                 shipHealth.TakeDamage(projectileDamage, partHit, projectileType);
-                InitiateDeSpawn();
+                if (partHit != ShipPart.Sail)
+                    InitiateDeSpawn();
             }
         }
 

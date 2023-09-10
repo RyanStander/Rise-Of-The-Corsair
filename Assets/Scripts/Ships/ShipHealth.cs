@@ -43,29 +43,24 @@ namespace Ships
                     HullCurrentHealth -= CalculateDamage(damage, damageMultiplier[ShipPart.Hull]);
                     CrewCurrentHealth -= CalculateDamage(damage, damageMultiplier[ShipPart.Crew])/nonDirectDamageMultiplier;
                     CannonCurrentHealth -= CalculateDamage(damage, damageMultiplier[ShipPart.Cannon])/nonDirectDamageMultiplier;
-                    Debug.Log($"Hull health: {HullCurrentHealth}, Crew health: {CrewCurrentHealth}, Cannon health: {CannonCurrentHealth}");
                     break;
                 case ShipPart.Sail:
                     SailCurrentHealth -= CalculateDamage(damage, damageMultiplier[ShipPart.Sail]);
                     MastCurrentHealth -= CalculateDamage(damage, damageMultiplier[ShipPart.Mast])/nonDirectDamageMultiplier;
-                    Debug.Log($"Sail health: {SailCurrentHealth}, Mast health: {MastCurrentHealth}");
                     break;
                 case ShipPart.Mast:
                     MastCurrentHealth -= CalculateDamage(damage, damageMultiplier[ShipPart.Mast]);
                     SailCurrentHealth -= CalculateDamage(damage, damageMultiplier[ShipPart.Sail])/nonDirectDamageMultiplier;
                     HullCurrentHealth -= CalculateDamage(damage, damageMultiplier[ShipPart.Hull])/nonDirectDamageMultiplier;
-                    Debug.Log($"Mast health: {MastCurrentHealth}, Sail health: {SailCurrentHealth}");
                     break;
                 case ShipPart.Cannon:
                     CannonCurrentHealth -= CalculateDamage(damage, damageMultiplier[ShipPart.Cannon]);
                     HullCurrentHealth -= CalculateDamage(damage, damageMultiplier[ShipPart.Hull])/nonDirectDamageMultiplier;
                     CrewCurrentHealth -= CalculateDamage(damage, damageMultiplier[ShipPart.Crew])/nonDirectDamageMultiplier;
-                    Debug.Log($"Cannon health: {CannonCurrentHealth}, Hull health: {HullCurrentHealth}, Crew health: {CrewCurrentHealth}");
                     break;
                 case ShipPart.Crew:
                     CrewCurrentHealth -= CalculateDamage(damage, damageMultiplier[ShipPart.Crew]);
                     HullCurrentHealth -= CalculateDamage(damage, damageMultiplier[ShipPart.Hull])/nonDirectDamageMultiplier;
-                    Debug.Log($"Crew health: {CrewCurrentHealth}, Hull health: {HullCurrentHealth}");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(partHit), partHit, null);
