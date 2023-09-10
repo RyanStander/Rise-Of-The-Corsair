@@ -6,6 +6,7 @@ namespace Player
 {
     [RequireComponent(typeof(ShipData))]
     [RequireComponent(typeof(ShipWindMovement))]
+    [RequireComponent(typeof(ShipHealth))]
     [RequireComponent(typeof(PlayerShipSteering))]
     [RequireComponent(typeof(PlayerFiring))]
     [RequireComponent(typeof(PlayerAiming))]

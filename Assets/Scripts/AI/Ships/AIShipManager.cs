@@ -6,6 +6,7 @@ namespace AI.Ships
 {
     [RequireComponent(typeof(ShipData))]
     [RequireComponent(typeof(ShipWindMovement))]
+    [RequireComponent(typeof(ShipHealth))]
     [RequireComponent(typeof(AIShipSteering))]
     [RequireComponent(typeof(AIShipFiring))]
     [RequireComponent(typeof(ShipReloading))]

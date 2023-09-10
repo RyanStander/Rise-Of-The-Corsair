@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 2405768922228985924}
   - component: {fileID: 1825494160746043509}
   m_Layer: 0
-  m_Name: CannonBall
+  m_Name: RoundShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,6 +277,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileRigidbody: {fileID: 2405768922228985924}
+  projectileMeshRenderer: {fileID: 2836742997031037757}
+  projectileDamage: 2
+  projectileType: 0
 --- !u!1001 &12475182224729059
 PrefabInstance:
   m_ObjectHideFlags: 0
