@@ -118,6 +118,10 @@ namespace Crew
             };
         }
 
+        /// <summary>
+        /// Generate a random health threshold, it has a 1% chance to be critical health and leans towards a good health
+        /// </summary>
+        /// <returns>A randomly generate health</returns>
         private CrewMemberHealth RandomHealth()
         {
             //Generate a random health, never critical but leans more towards good health
