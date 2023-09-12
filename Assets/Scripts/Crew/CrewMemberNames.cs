@@ -1,17 +1,17 @@
+using UnityEngine;
+
 namespace Crew
 {
     public class CrewMemberNames
     {
-        public NameSet EnglishNames { get; private set; }
-        public NameSet DutchNames { get; private set; }
-        public NameSet SpanishNames { get; private set; }
-        public NameSet FrenchNames { get; private set; }
+        public NameSet EnglishNames;
+        public NameSet DutchNames;
+        public NameSet SpanishNames;
+        public NameSet FrenchNames;
 
-        public class NameSet
+        public static CrewMemberNames CreateFromJson(string jsonString)
         {
-            public string[] MaleNames { get; private set; }
-            public string[] FemaleNames { get; private set; }
-            public string[] Surnames { get; private set; }
+            return JsonUtility.FromJson<CrewMemberNames>(jsonString);
         }
     }
 }

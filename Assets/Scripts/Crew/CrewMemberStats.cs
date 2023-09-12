@@ -44,6 +44,10 @@ namespace Crew
 
             crewMemberStats.Rank = DetermineRank(Level);
 
+            //TODO: add traits and specialisation functionality
+
+            SetupAttributes();
+
             return crewMemberStats;
         }
 
@@ -125,16 +129,72 @@ namespace Crew
         private CrewMemberHealth RandomHealth()
         {
             //Generate a random health, never critical but leans more towards good health
-              var randomHealth = Random.Range(0, 100);
+            var randomHealth = Random.Range(0, 100);
 
-              return randomHealth switch
-              {
-                  <= 1 => CrewMemberHealth.Critical,
-                  > 1 and <= 25 => CrewMemberHealth.Poor,
-                  > 25 and <= 35 => CrewMemberHealth.Fair,
-                  > 35 and <= 95 => CrewMemberHealth.Good,
-                  _ => CrewMemberHealth.Excellent
-              };
+            return randomHealth switch
+            {
+                <= 1 => CrewMemberHealth.Critical,
+                > 1 and <= 25 => CrewMemberHealth.Poor,
+                > 25 and <= 35 => CrewMemberHealth.Fair,
+                > 35 and <= 95 => CrewMemberHealth.Good,
+                _ => CrewMemberHealth.Excellent
+            };
+        }
+
+        /// <summary>
+        /// For each level, a crew member gains 1 point to all stats, and 2 points randomly distributed to any stat
+        /// </summary>
+        private void SetupAttributes()
+        {
+            for (var i = 0; i < Level; i++)
+            {
+                Strength++;
+                Agility++;
+                Marksmanship++;
+                Sailing++;
+                Repair++;
+                Medicine++;
+                Leadership++;
+                Navigation++;
+                Cooking++;
+
+                for (var j = 0; j < 2; j++)
+                {
+                    //randomly distribute 2 points to any stat
+                    var randomStat = Random.Range(0, 9);
+
+                    switch (randomStat)
+                    {
+                        case 0:
+                            Strength++;
+                            break;
+                        case 1:
+                            Agility++;
+                            break;
+                        case 2:
+                            Marksmanship++;
+                            break;
+                        case 3:
+                            Sailing++;
+                            break;
+                        case 4:
+                            Repair++;
+                            break;
+                        case 5:
+                            Medicine++;
+                            break;
+                        case 6:
+                            Leadership++;
+                            break;
+                        case 7:
+                            Navigation++;
+                            break;
+                        case 8:
+                            Cooking++;
+                            break;
+                    }
+                }
+            }
         }
     }
 }
