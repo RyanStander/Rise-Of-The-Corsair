@@ -1,17 +1,20 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Crew
 {
     public class CrewMemberNicknames
     {
-        public string[] EnglishNames;
-        public string[] DutchNames;
-        public string[] SpanishNames;
-        public string[] FrenchNames;
+        public string[] EnglishNicknames;
+        public string[] DutchNicknames;
+        public string[] SpanishNicknames;
+        public string[] FrenchNicknames;
 
-        public static CrewMemberNicknames CreateFromJson(string jsonString)
+        public static CrewMemberNicknames CreateFromJson(TextAsset textAsset)
         {
-            return JsonUtility.FromJson<CrewMemberNicknames>(jsonString);
+            var crewMemberNicknames = JsonUtility.FromJson<CrewMemberNicknames>(textAsset.text);
+
+            return crewMemberNicknames;
         }
     }
 }

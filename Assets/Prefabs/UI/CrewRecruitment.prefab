@@ -413,8 +413,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -587.5, y: 0.000025056}
-  m_SizeDelta: {x: 50.4097, y: 41.129}
+  m_AnchoredPosition: {x: -592.1326, y: 0.000025056}
+  m_SizeDelta: {x: 111.804, y: 111.763}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6414862243306680633
 CanvasRenderer:
@@ -1701,8 +1701,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 131.52
+  m_fontSizeBase: 131.52
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2582,8 +2582,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 94.6
+  m_fontSizeBase: 94.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2850,8 +2850,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 131.52
+  m_fontSizeBase: 131.52
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3004,7 +3004,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 475.79, y: 89.211}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2814180848533794905
 CanvasRenderer:
@@ -4906,6 +4906,7 @@ GameObject:
   - component: {fileID: 3045136760254718368}
   - component: {fileID: 3877092536767670826}
   - component: {fileID: 7952452014648778483}
+  - component: {fileID: 4312737415552991771}
   m_Layer: 5
   m_Name: CrewRecruitment
   m_TagString: Untagged
@@ -4978,6 +4979,36 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4312737415552991771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8251735766359316916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 676bb09ab90ecaf49b91d4274a8e4d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 4504862134849882671}
+  nicknameText: {fileID: 9173866548278552118}
+  rankText: {fileID: 947444557110167521}
+  healthText: {fileID: 5601356742587000160}
+  strengthText: {fileID: 7295499149623581888}
+  agilityText: {fileID: 9120366025973025650}
+  marksmanshipText: {fileID: 6288815072133452431}
+  sailingText: {fileID: 1132821253990529502}
+  repairText: {fileID: 3863120314112935273}
+  medicineText: {fileID: 2783583780999695959}
+  leadershipText: {fileID: 1038057613268386032}
+  navigationText: {fileID: 4113439165541319686}
+  cookingText: {fileID: 5677414086287516837}
+  moraleSlider: {fileID: 7732363275214478654}
+  recruitButton: {fileID: 1327583585706651280}
+  previousButton: {fileID: 5796442246878998349}
+  nextButton: {fileID: 4332184108572188203}
+  crewLevelData: {fileID: 11400000, guid: 065c861c6ca71874da645fc40c022d00, type: 2}
 --- !u!1 &8526461978497937396
 GameObject:
   m_ObjectHideFlags: 0
@@ -5261,8 +5292,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 613.2, y: 0.000019854}
-  m_SizeDelta: {x: 50.4097, y: 41.129}
+  m_AnchoredPosition: {x: 584, y: -0.87147}
+  m_SizeDelta: {x: 110.06, y: 110.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3422508012351753226
 CanvasRenderer:

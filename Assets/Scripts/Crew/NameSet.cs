@@ -1,5 +1,6 @@
 namespace Crew
 {
+    [System.Serializable]
     public class NameSet
     {
         public string[] MaleNames;
