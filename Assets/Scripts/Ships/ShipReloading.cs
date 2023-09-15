@@ -34,7 +34,7 @@ namespace Ships
         /// </summary>
         public void StartReload(ShipSide side)
         {
-            float crewDifference = shipData.CurrentCrewCount - shipData.Stats.minCrew;
+            float crewDifference = shipData.CrewMembers.Count - shipData.Stats.minCrew;
             float crewDifferenceMax = shipData.Stats.maxCrew - shipData.Stats.minCrew;
             var crewDifferenceModifier = Mathf.Max(1 - crewDifference / crewDifferenceMax, 0.25f);
 

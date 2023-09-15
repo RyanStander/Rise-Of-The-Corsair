@@ -446,7 +446,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4312737415552991771, guid: 34b48ebcb9a18834690e127fa0fa4843, type: 3}
       propertyPath: crewMemberLevel
-      value: 20
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4472883013125376709, guid: 34b48ebcb9a18834690e127fa0fa4843, type: 3}
       propertyPath: m_AnchorMax.y
