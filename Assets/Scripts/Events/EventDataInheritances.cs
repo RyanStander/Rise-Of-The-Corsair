@@ -1,5 +1,6 @@
 ﻿//Event that informs subscribers of a debug log
 
+using Crew;
 using TimeAndSeasons;
 using Weather;
 
@@ -56,6 +57,15 @@ namespace Events
         {
             WindSpeed = windSpeed;
             WindDirection = windDirection;
+        }
+    }
+
+    public class RecruitCrewMember : EventData
+    {
+        public readonly CrewMemberStats CrewMemberStats;
+        public RecruitCrewMember(CrewMemberStats crewMemberStats) : base(EventIdentifiers.RecruitCrewMember)
+        {
+            CrewMemberStats = crewMemberStats;
         }
     }
 }

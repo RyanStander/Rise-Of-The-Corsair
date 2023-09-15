@@ -400,7 +400,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6640814496988705361}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4312737415552991771}
+        m_TargetAssemblyTypeName: Crew.CrewRecruitment, Assembly-CSharp
+        m_MethodName: PreviousCrewMember
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &893827367981928449
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,7 +1375,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4312737415552991771}
         m_TargetAssemblyTypeName: Crew.CrewRecruitment, Assembly-CSharp
-        m_MethodName: GenerateNextCrewMember
+        m_MethodName: NextCrewMember
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1568,7 +1580,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7102979747004366491}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4312737415552991771}
+        m_TargetAssemblyTypeName: Crew.CrewRecruitment, Assembly-CSharp
+        m_MethodName: RecruitCrewMember
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6005233369861285118
 GameObject:
   m_ObjectHideFlags: 0
@@ -2067,7 +2091,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: d7e46c7d742f5489891d6e506f211ede, type: 3}
+  m_Texture: {fileID: 2800000, guid: 409428277ef6ba84e8c3a75ceb1e2ec7, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

@@ -7,6 +7,7 @@ namespace Events
         SendTimeStrength=1,
         NewDay=2,
         WeatherHasChanged=3,
-        NewWind=4
+        NewWind=4,
+        RecruitCrewMember=5,
     }
 }

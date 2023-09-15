@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,8 +9,9 @@ namespace Crew
 {
     public class CrewRecruitment : MonoBehaviour
     {
-        [Header("Text fields")]
-        [SerializeField] private TextMeshProUGUI nameText;
+        [Header("Text fields")] [SerializeField]
+        private TextMeshProUGUI nameText;
+
         [SerializeField] private TextMeshProUGUI nicknameText;
         [SerializeField] private TextMeshProUGUI rankText;
         [SerializeField] private TextMeshProUGUI healthText;
@@ -22,8 +25,9 @@ namespace Crew
         [SerializeField] private TextMeshProUGUI navigationText;
         [SerializeField] private TextMeshProUGUI cookingText;
 
-        [Header("Slider fields")]
-        [SerializeField] private Slider strengthSlider;
+        [Header("Slider fields")] [SerializeField]
+        private Slider strengthSlider;
+
         [SerializeField] private Slider agilitySlider;
         [SerializeField] private Slider marksmanshipSlider;
         [SerializeField] private Slider sailingSlider;
@@ -34,28 +38,81 @@ namespace Crew
         [SerializeField] private Slider cookingSlider;
         [SerializeField] private Slider moraleSlider;
 
-        [Header("Button fields")]
-        [SerializeField] private Button recruitButton;
+        [Header("Button fields")] [SerializeField]
+        private Button recruitButton;
+
         [SerializeField] private Button previousButton;
         [SerializeField] private Button nextButton;
 
-        [Header("Crew member data")] [Range(1,20),SerializeField]
+        [Header("Crew member data")] [Range(1, 20), SerializeField]
         private int crewMemberLevel;
+
         [SerializeField] private TextAsset crewMemberNamesAsset;
         [SerializeField] private TextAsset crewMemberNicknamesAsset;
         [SerializeField] private CrewLevelData crewLevelData;
 
+        private List<CrewMemberStats> generatedCrewMembers = new List<CrewMemberStats>();
+        private int currentCrewMemberIndex = 0;
+
         private void Start()
         {
-            GenerateNextCrewMember();
+            GenerateCrewMember();
+
+            SetCrewUI(generatedCrewMembers[currentCrewMemberIndex]);
         }
 
-        public void GenerateNextCrewMember()
+        public void NextCrewMember()
         {
-            //Generate a new crew member
-            var crewMemberStats = CrewMemberCreator.GenerateCrewMemberStats(crewMemberLevel, crewLevelData, crewMemberNamesAsset, crewMemberNicknamesAsset);
+            currentCrewMemberIndex++;
 
-            SetCrewUI(crewMemberStats);
+            //check if is in range
+            if (currentCrewMemberIndex >= generatedCrewMembers.Count)
+            {
+                GenerateCrewMember();
+            }
+
+            SetCrewUI(generatedCrewMembers[currentCrewMemberIndex]);
+        }
+
+        public void PreviousCrewMember()
+        {
+            currentCrewMemberIndex--;
+
+            //check if is in range
+            if (currentCrewMemberIndex < 0)
+            {
+                currentCrewMemberIndex = generatedCrewMembers.Count - 1;
+            }
+
+            SetCrewUI(generatedCrewMembers[currentCrewMemberIndex]);
+        }
+
+        public void RecruitCrewMember()
+        {
+            EventManager.currentManager.AddEvent(new RecruitCrewMember(generatedCrewMembers[currentCrewMemberIndex]));
+
+            //remove crew member from list
+            generatedCrewMembers.RemoveAt(currentCrewMemberIndex);
+            currentCrewMemberIndex--;
+
+            if (generatedCrewMembers.Count == 0)
+            {
+                GenerateCrewMember();
+                currentCrewMemberIndex = 0;
+            }
+            else
+            {
+                if (currentCrewMemberIndex < 0)
+                    currentCrewMemberIndex = generatedCrewMembers.Count - 1;
+            }
+
+            SetCrewUI(generatedCrewMembers[currentCrewMemberIndex]);
+        }
+
+        private void GenerateCrewMember()
+        {
+            generatedCrewMembers.Add(CrewMemberCreator.GenerateCrewMemberStats(crewMemberLevel, crewLevelData,
+                crewMemberNamesAsset, crewMemberNicknamesAsset));
         }
 
         private void SetCrewUI(CrewMemberStats crewMemberStats)
