@@ -7,18 +7,23 @@ using Random = UnityEngine.Random;
 
 namespace Crew
 {
-    public class CrewMemberCreator
+    public abstract class CrewMemberCreator
     {
-        public static CrewMemberStats GenerateCrewMemberStats(int minLevel, CrewLevelData crewLevelData, TextAsset crewMemberNamesAsset, TextAsset crewMemberNicknamesAsset)
+        private const int MaxStat = 40;
+        private const int SpecialityBonus = 15;
+
+        public static CrewMemberStats GenerateCrewMemberStats(int currentLevel, CrewLevelData crewLevelData,
+            TextAsset crewMemberNamesAsset, TextAsset crewMemberNicknamesAsset)
         {
             var crewMemberStats = new CrewMemberStats();
 
-            //TODO: This needs some form of random
-            crewMemberStats.Level = minLevel;
+            crewMemberStats.Speciality = RandomSpeciality();
+
+            crewMemberStats.Level = currentLevel;
 
             //TODO: change this to faction based on location or ship obtained from
-            crewMemberStats.Name = GetRandomName(Faction.Dutch,crewMemberNamesAsset);
-            crewMemberStats.Nickname = GetRandomNickname(Faction.Dutch,crewMemberNicknamesAsset);
+            crewMemberStats.Name = GetRandomName(Faction.Dutch, crewMemberNamesAsset);
+            crewMemberStats.Nickname = GetRandomNickname(Faction.Dutch, crewMemberNicknamesAsset);
 
             crewMemberStats.Health = RandomHealth();
 
@@ -89,6 +94,26 @@ namespace Crew
 
         #endregion
 
+        private static CrewStats RandomSpeciality()
+        {
+            //Select a speciality at random
+            var randomSpeciality = Random.Range(0, 9);
+
+            return randomSpeciality switch
+            {
+                0 => CrewStats.Strength,
+                1 => CrewStats.Agility,
+                2 => CrewStats.Marksmanship,
+                3 => CrewStats.Sailing,
+                4 => CrewStats.Repair,
+                5 => CrewStats.Medicine,
+                6 => CrewStats.Leadership,
+                7 => CrewStats.Navigation,
+                8 => CrewStats.Cooking,
+                _ => throw new ArgumentOutOfRangeException()
+            };
+        }
+
         private static CrewMemberRank DetermineRank(int level)
         {
             return level switch
@@ -128,58 +153,136 @@ namespace Crew
         /// </summary>
         private static CrewMemberStats SetupAttributes(CrewMemberStats crewMemberStats)
         {
+            //Give a bonus to the speciality
+            switch (crewMemberStats.Speciality)
+            {
+                case CrewStats.Strength:
+                    crewMemberStats.Strength += SpecialityBonus;
+                    break;
+                case CrewStats.Agility:
+                    crewMemberStats.Agility += SpecialityBonus;
+                    break;
+                case CrewStats.Marksmanship:
+                    crewMemberStats.Marksmanship += SpecialityBonus;
+                    break;
+                case CrewStats.Sailing:
+                    crewMemberStats.Sailing += SpecialityBonus;
+                    break;
+                case CrewStats.Repair:
+                    crewMemberStats.Repair += SpecialityBonus;
+                    break;
+                case CrewStats.Medicine:
+                    crewMemberStats.Medicine += SpecialityBonus;
+                    break;
+                case CrewStats.Leadership:
+                    crewMemberStats.Leadership += SpecialityBonus;
+                    break;
+                case CrewStats.Navigation:
+                    crewMemberStats.Navigation += SpecialityBonus;
+                    break;
+                case CrewStats.Cooking:
+                    crewMemberStats.Cooking += SpecialityBonus;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
 
             for (var i = 0; i < crewMemberStats.Level; i++)
             {
-                crewMemberStats.Strength++;
-                crewMemberStats.Agility++;
-                crewMemberStats.Marksmanship++;
-                crewMemberStats.Sailing++;
-                crewMemberStats.Repair++;
-                crewMemberStats.Medicine++;
-                crewMemberStats.Leadership++;
-                crewMemberStats.Navigation++;
-                crewMemberStats.Cooking++;
+                var unMaxedStats = GetUnMaxedStats(crewMemberStats);
+
+                if (unMaxedStats.Contains(CrewStats.Strength))
+                    crewMemberStats.Strength++;
+                if (unMaxedStats.Contains(CrewStats.Agility))
+                    crewMemberStats.Agility++;
+                if (unMaxedStats.Contains(CrewStats.Marksmanship))
+                    crewMemberStats.Marksmanship++;
+                if (unMaxedStats.Contains(CrewStats.Sailing))
+                    crewMemberStats.Sailing++;
+                if (unMaxedStats.Contains(CrewStats.Repair))
+                    crewMemberStats.Repair++;
+                if (unMaxedStats.Contains(CrewStats.Medicine))
+                    crewMemberStats.Medicine++;
+                if (unMaxedStats.Contains(CrewStats.Leadership))
+                    crewMemberStats.Leadership++;
+                if (unMaxedStats.Contains(CrewStats.Navigation))
+                    crewMemberStats.Navigation++;
+                if (unMaxedStats.Contains(CrewStats.Cooking))
+                    crewMemberStats.Cooking++;
 
                 for (var j = 0; j < 2; j++)
                 {
-                    //randomly distribute 2 points to any stat
-                    var randomStat = Random.Range(0, 9);
+                    unMaxedStats = GetUnMaxedStats(crewMemberStats);
 
-                    switch (randomStat)
+                    //randomly select a stat to increase
+                    var randomStat = Random.Range(0, unMaxedStats.Count);
+
+                    var selectedStat = unMaxedStats[randomStat];
+
+                    switch (selectedStat)
                     {
-                        case 0:
+                        case CrewStats.Strength:
                             crewMemberStats.Strength++;
                             break;
-                        case 1:
+                        case CrewStats.Agility:
                             crewMemberStats.Agility++;
                             break;
-                        case 2:
+                        case CrewStats.Marksmanship:
                             crewMemberStats.Marksmanship++;
                             break;
-                        case 3:
+                        case CrewStats.Sailing:
                             crewMemberStats.Sailing++;
                             break;
-                        case 4:
+                        case CrewStats.Repair:
                             crewMemberStats.Repair++;
                             break;
-                        case 5:
+                        case CrewStats.Medicine:
                             crewMemberStats.Medicine++;
                             break;
-                        case 6:
+                        case CrewStats.Leadership:
                             crewMemberStats.Leadership++;
                             break;
-                        case 7:
+                        case CrewStats.Navigation:
                             crewMemberStats.Navigation++;
                             break;
-                        case 8:
+                        case CrewStats.Cooking:
                             crewMemberStats.Cooking++;
                             break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
                     }
                 }
             }
 
             return crewMemberStats;
+        }
+
+        private static List<CrewStats> GetUnMaxedStats(CrewMemberStats crewMemberStats)
+        {
+            //Any stat above 40 is considered maxed out
+            var unMaxedStats = new List<CrewStats>();
+
+            //check if any stats are not max level
+            if (crewMemberStats.Strength < MaxStat)
+                unMaxedStats.Add(CrewStats.Strength);
+            if (crewMemberStats.Agility < MaxStat)
+                unMaxedStats.Add(CrewStats.Agility);
+            if (crewMemberStats.Marksmanship < MaxStat)
+                unMaxedStats.Add(CrewStats.Marksmanship);
+            if (crewMemberStats.Sailing < MaxStat)
+                unMaxedStats.Add(CrewStats.Sailing);
+            if (crewMemberStats.Repair < MaxStat)
+                unMaxedStats.Add(CrewStats.Repair);
+            if (crewMemberStats.Medicine < MaxStat)
+                unMaxedStats.Add(CrewStats.Medicine);
+            if (crewMemberStats.Leadership < MaxStat)
+                unMaxedStats.Add(CrewStats.Leadership);
+            if (crewMemberStats.Navigation < MaxStat)
+                unMaxedStats.Add(CrewStats.Navigation);
+            if (crewMemberStats.Cooking < MaxStat)
+                unMaxedStats.Add(CrewStats.Cooking);
+
+            return unMaxedStats;
         }
     }
 }

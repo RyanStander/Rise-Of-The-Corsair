@@ -16,6 +16,7 @@ namespace Crew
         public string Nickname;
         public CrewMemberRank Rank;
         public CrewMemberHealth Health;
+        public CrewStats Speciality;
         public int Strength;
         public int Agility;
         public int Marksmanship;

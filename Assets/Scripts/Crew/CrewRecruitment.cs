@@ -39,18 +39,23 @@ namespace Crew
         [SerializeField] private Button previousButton;
         [SerializeField] private Button nextButton;
 
-        [Header("Crew member data")]
+        [Header("Crew member data")] [Range(1,20),SerializeField]
+        private int crewMemberLevel;
         [SerializeField] private TextAsset crewMemberNamesAsset;
         [SerializeField] private TextAsset crewMemberNicknamesAsset;
         [SerializeField] private CrewLevelData crewLevelData;
 
         private void Start()
         {
+            GenerateNextCrewMember();
+        }
+
+        public void GenerateNextCrewMember()
+        {
             //Generate a new crew member
-            var crewMemberStats = CrewMemberCreator.GenerateCrewMemberStats(1, crewLevelData, crewMemberNamesAsset, crewMemberNicknamesAsset);
+            var crewMemberStats = CrewMemberCreator.GenerateCrewMemberStats(crewMemberLevel, crewLevelData, crewMemberNamesAsset, crewMemberNicknamesAsset);
 
             SetCrewUI(crewMemberStats);
-
         }
 
         private void SetCrewUI(CrewMemberStats crewMemberStats)
