@@ -23,6 +23,15 @@ namespace Crew
         [SerializeField] private TextMeshProUGUI cookingText;
 
         [Header("Slider fields")]
+        [SerializeField] private Slider strengthSlider;
+        [SerializeField] private Slider agilitySlider;
+        [SerializeField] private Slider marksmanshipSlider;
+        [SerializeField] private Slider sailingSlider;
+        [SerializeField] private Slider repairSlider;
+        [SerializeField] private Slider medicineSlider;
+        [SerializeField] private Slider leadershipSlider;
+        [SerializeField] private Slider navigationSlider;
+        [SerializeField] private Slider cookingSlider;
         [SerializeField] private Slider moraleSlider;
 
         [Header("Button fields")]
@@ -50,15 +59,25 @@ namespace Crew
             nicknameText.text = crewMemberStats.Nickname;
             rankText.text = crewMemberStats.Rank.ToString();
             healthText.text = crewMemberStats.Health.ToString();
+
             strengthText.text = crewMemberStats.Strength.ToString();
+            strengthSlider.value = crewMemberStats.Strength;
             agilityText.text = crewMemberStats.Agility.ToString();
+            agilitySlider.value = crewMemberStats.Agility;
             marksmanshipText.text = crewMemberStats.Marksmanship.ToString();
+            marksmanshipSlider.value = crewMemberStats.Marksmanship;
             sailingText.text = crewMemberStats.Sailing.ToString();
+            sailingSlider.value = crewMemberStats.Sailing;
             repairText.text = crewMemberStats.Repair.ToString();
+            repairSlider.value = crewMemberStats.Repair;
             medicineText.text = crewMemberStats.Medicine.ToString();
+            medicineSlider.value = crewMemberStats.Medicine;
             leadershipText.text = crewMemberStats.Leadership.ToString();
+            leadershipSlider.value = crewMemberStats.Leadership;
             navigationText.text = crewMemberStats.Navigation.ToString();
+            navigationSlider.value = crewMemberStats.Navigation;
             cookingText.text = crewMemberStats.Cooking.ToString();
+            cookingSlider.value = crewMemberStats.Cooking;
             moraleSlider.value = crewMemberStats.Morale;
         }
     }
