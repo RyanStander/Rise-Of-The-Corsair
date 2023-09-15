@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca26d689d644246b02bde0ec1115bdc, type: 3}
+  m_Name: CrewSprites
+  m_EditorClassIdentifier: 
+  StrengthSprite: {fileID: 21300000, guid: 268ac875f9668439f9a1c8d5e6922839, type: 3}
+  AgilitySprite: {fileID: 21300000, guid: 5c2cc4cab67304c3eb99eec68c5fc0ca, type: 3}
+  MarksmanshipSprite: {fileID: 21300000, guid: c0a65ebbe83c4a7458aa1d4c5f8a1af9, type: 3}
+  SailingSprite: {fileID: 21300000, guid: 737b9105d0944744c9b06a502e5e4a32, type: 3}
+  RepairSprite: {fileID: 21300000, guid: 96f6771f71ce24c3cabf660e262b1caa, type: 3}
+  MedicineSprite: {fileID: 21300000, guid: 50e238e2509184567abda05de5af2257, type: 3}
+  LeadershipSprite: {fileID: 21300000, guid: 975dbf1d3276748069828c927bfe06cb, type: 3}
+  NavigationSprite: {fileID: 21300000, guid: 675fe4f33d615674cae3b143c69706ad, type: 3}
+  CookingSprite: {fileID: 21300000, guid: de6be62ee2c12400eae3374444bf71ee, type: 3}

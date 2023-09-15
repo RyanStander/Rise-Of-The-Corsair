@@ -9,6 +9,8 @@ namespace Crew
 {
     public class CrewRecruitment : MonoBehaviour
     {
+        [SerializeField] private Image crewSpecializationImage;
+
         [Header("Text fields")] [SerializeField]
         private TextMeshProUGUI nameText;
 
@@ -50,6 +52,7 @@ namespace Crew
         [SerializeField] private TextAsset crewMemberNamesAsset;
         [SerializeField] private TextAsset crewMemberNicknamesAsset;
         [SerializeField] private CrewLevelData crewLevelData;
+        [SerializeField] private CrewSprites crewSprites;
 
         private List<CrewMemberStats> generatedCrewMembers = new List<CrewMemberStats>();
         private int currentCrewMemberIndex = 0;
@@ -117,6 +120,8 @@ namespace Crew
 
         private void SetCrewUI(CrewMemberStats crewMemberStats)
         {
+            crewSpecializationImage.sprite = crewSprites.GetSprite(crewMemberStats.Speciality);
+
             nameText.text = crewMemberStats.Name;
             nicknameText.text = crewMemberStats.Nickname;
             rankText.text = crewMemberStats.Rank.ToString();

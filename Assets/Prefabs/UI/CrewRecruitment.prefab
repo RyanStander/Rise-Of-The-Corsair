@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 5117404258140956130}
   - component: {fileID: 4110901273267074847}
   m_Layer: 5
-  m_Name: Icon
+  m_Name: SpecialisationIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -523,7 +523,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0.0010777, y: -45.6}
-  m_SizeDelta: {x: 76.174, y: 76.174}
+  m_SizeDelta: {x: 62.383, y: 62.383}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5117404258140956130
 CanvasRenderer:
@@ -553,7 +553,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 409428277ef6ba84e8c3a75ceb1e2ec7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 737b9105d0944744c9b06a502e5e4a32, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2192,6 +2192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676bb09ab90ecaf49b91d4274a8e4d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crewSpecializationImage: {fileID: 4110901273267074847}
   nameText: {fileID: 4504862134849882671}
   nicknameText: {fileID: 9173866548278552118}
   rankText: {fileID: 947444557110167521}
@@ -2222,6 +2223,7 @@ MonoBehaviour:
   crewMemberNamesAsset: {fileID: 4900000, guid: fac28ad3bd4a58e4f8adec089e74d74b, type: 3}
   crewMemberNicknamesAsset: {fileID: 4900000, guid: fef4287050be0ad48b0d06adc24b5e53, type: 3}
   crewLevelData: {fileID: 11400000, guid: 065c861c6ca71874da645fc40c022d00, type: 2}
+  crewSprites: {fileID: 11400000, guid: c7ac3883823a4b44aaafc8702347c250, type: 2}
 --- !u!1 &8480063765795524286
 GameObject:
   m_ObjectHideFlags: 0
