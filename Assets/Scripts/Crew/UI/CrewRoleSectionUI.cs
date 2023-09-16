@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Crew
+namespace Crew.UI
 {
     public class CrewRoleSectionUI : MonoBehaviour
     {

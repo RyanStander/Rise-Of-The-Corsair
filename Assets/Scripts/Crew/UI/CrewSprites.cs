@@ -2,7 +2,7 @@ using System;
 using Crew.Enums;
 using UnityEngine;
 
-namespace Crew
+namespace Crew.UI
 {
     [CreateAssetMenu(fileName = "CrewSprites", menuName = "Scriptables/Crew/Sprites", order = 0)]
     public class CrewSprites : ScriptableObject

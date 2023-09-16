@@ -85,7 +85,7 @@ namespace Ships
 
         private void DetermineBestSailingPoint()
         {
-            switch (shipData.Stats.bestSailingPoint)
+            switch (shipData.Stats.BestSailingPoint)
             {
                 case ShipWindDirections.BeforeTheWind:
                     bestSailingDirection = beforeTheWind;
@@ -127,8 +127,8 @@ namespace Ships
             //the ships highest speed is when the angle matches the best sailing point, the higher it becomes the less speed the ship has, anything below the best sailing point stays the same
             var speedModifier = DetermineSpeedModifier();
 
-            var force = transform.forward * Mathf.Clamp(currentWindSpeed * speedModifier * shipData.Stats.speedModifier,
-                shipData.Stats.minSpeed, shipData.Stats.maxSpeed);
+            var force = transform.forward * Mathf.Clamp(currentWindSpeed * speedModifier * shipData.Stats.SpeedModifier,
+                shipData.Stats.MinSpeed, shipData.Stats.MaxSpeed);
 
             //the lower the health of the sails, the less force is applied to the ship
             force *= shipHealth.SailCurrentHealth / shipData.Stats.SailMaxHealth;

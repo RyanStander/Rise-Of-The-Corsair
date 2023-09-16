@@ -1,3 +1,4 @@
+using System;
 using Ships.Enums;
 using UnityEngine;
 
@@ -9,25 +10,80 @@ namespace Ships
     [CreateAssetMenu(menuName = "Scriptables/Ships/ShipStats")]
     public class ShipStats : ScriptableObject
     {
-        [field: SerializeField] public GameObject shipPrefab { get; private set; }
-        [field: SerializeField] public ShipRarity rarity { get; private set; }
-        [field: SerializeField] public ShipSize size { get; private set; }
-        [field: SerializeField] public ShipManeuverability maneuverability { get; private set; }
-        [field: SerializeField] public ShipDurability durability { get; private set; }
-        [field: SerializeField] public ShipWindDirections bestSailingPoint { get; private set; }
-        [field: SerializeField] public float speedModifier { get; private set; }
-        [field: SerializeField] public float maxSpeed { get; private set; }
-        [field: SerializeField] public float minSpeed { get; private set; }
+        [field: SerializeField] public GameObject ShipPrefab { get; private set; }
+        [field: SerializeField] public ShipRarity Rarity { get; private set; }
+        [field: SerializeField] public ShipSize Size { get; private set; }
+        [field: SerializeField] public ShipManeuverability Maneuverability { get; private set; }
+        [field: SerializeField] public ShipDurability Durability { get; private set; }
+        [field: SerializeField] public ShipWindDirections BestSailingPoint { get; private set; }
+        [field: SerializeField] public float SpeedModifier { get; private set; }
+        [field: SerializeField] public float MaxSpeed { get; private set; }
+        [field: SerializeField] public float MinSpeed { get; private set; }
 
-        [field: SerializeField] public int maxCrew { get; private set; }
-        [field: SerializeField] public int minCrew { get; private set; }
-        [field: SerializeField] public int cargoCapacity { get; private set; }
-        [field: SerializeField] public int basicSalePrice { get; private set; }
+        [field: SerializeField] public int CargoCapacity { get; private set; }
+        [field: SerializeField] public int BasicSalePrice { get; private set; }
 
-        [field: SerializeField] public int maxCannons { get; private set; }
+        [field: SerializeField] public int MaxCannons { get; private set; }
         [field: SerializeField] public int SailMaxHealth { get; private set; }
         [field: SerializeField] public int HullMaxHealth { get; private set; }
         [field: SerializeField] public int MastMaxHealth { get; private set; }
 
+        [Header("Crew")] public int MaxCrew;
+
+        public int MinCrew;
+
+        [Header("Roles")] [Header("NonCombat")]
+        public int MaxQuartermasters;
+
+        public int MaxCooks;
+        public int MaxBoatswains;
+        public int MaxSailHands;
+        public int MaxLookouts;
+        public int MaxDoctors;
+        public int MaxShantyMen;
+
+        [Header("NavalCombat")] public int MaxCommanders;
+        public int MaxCombatSailHands;
+        public int MaxEmergencyMedics;
+        public int MaxEmergencyRepairMen;
+        public int MaxGunners;
+        public int MaxCombatLookouts;
+        public int PowderMonkeys;
+
+        [Header("Boarding")] public int MaxSwordsmen;
+        public int MaxMusketeers;
+
+        private void OnValidate()
+        {
+            DetermineMinCrew();
+
+            DetermineMaxGunners();
+        }
+
+        private void DetermineMaxGunners()
+        {
+            //Max gunners is the total of cannons
+            MaxGunners = MaxCannons;
+
+            //Powder monkeys is 1/4 of max gunners
+            PowderMonkeys = Mathf.RoundToInt(MaxGunners / 4f);
+        }
+
+        private void DetermineMinCrew()
+        {
+            //Min crew is the total of all roles
+            var nonCombatRoleCount = MaxQuartermasters + MaxCooks + MaxBoatswains + MaxSailHands + MaxLookouts +
+                                     MaxDoctors + MaxShantyMen;
+
+            var navalCombatRoleCount = MaxCommanders + MaxCombatSailHands + MaxEmergencyMedics + MaxEmergencyRepairMen +
+                                       MaxGunners + MaxCombatLookouts + PowderMonkeys;
+
+            var boardingRoleCount = MaxSwordsmen + MaxMusketeers;
+
+            //Choose the highest role count
+            var highestRoleCount = Mathf.Max(nonCombatRoleCount, navalCombatRoleCount, boardingRoleCount);
+
+            MinCrew = highestRoleCount;
+        }
     }
 }

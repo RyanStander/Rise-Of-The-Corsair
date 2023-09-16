@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using Crew.Enums;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Crew
+namespace Crew.UI
 {
     public class CrewMemberUIData : MonoBehaviour
     {
