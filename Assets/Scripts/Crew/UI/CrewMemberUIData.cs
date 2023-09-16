@@ -34,6 +34,8 @@ namespace Crew.UI
         [Header("Misc")] [SerializeField] private Slider moraleSlider;
         [SerializeField] private TMP_Dropdown roleDropdown;
 
+        public CrewMemberStats CrewMemberStats;
+
         private void OnValidate()
         {
             if (crewSprites == null)
@@ -61,6 +63,8 @@ namespace Crew.UI
 
         public void SetCrewUI(CrewMemberStats crewMemberStats)
         {
+            CrewMemberStats = crewMemberStats;
+
             crewSpecializationImage.sprite = crewSprites.GetSprite(crewMemberStats.Speciality);
 
             nicknameText.text = crewMemberStats.Nickname;

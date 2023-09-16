@@ -22,7 +22,7 @@ namespace Ships
 
         private int crewMembersToGenerate = 40;
 
-        private void Start()
+        private void Awake()
         {
             for (var i = 0; i < crewMembersToGenerate; i++)
             {

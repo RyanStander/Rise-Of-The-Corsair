@@ -48,7 +48,7 @@ namespace Ships
         public int MaxEmergencyRepairMen;
         public int MaxGunners;
         public int MaxCombatLookouts;
-        public int PowderMonkeys;
+        public int MaxPowderMonkeys;
 
         [Header("Boarding")] public int MaxSwordsmen;
         public int MaxMusketeers;
@@ -66,7 +66,7 @@ namespace Ships
             MaxGunners = MaxCannons;
 
             //Powder monkeys is 1/4 of max gunners
-            PowderMonkeys = Mathf.RoundToInt(MaxGunners / 4f);
+            MaxPowderMonkeys = Mathf.RoundToInt(MaxGunners / 4f);
         }
 
         private void DetermineMinCrew()
@@ -76,7 +76,7 @@ namespace Ships
                                      MaxDoctors + MaxShantyMen;
 
             var navalCombatRoleCount = MaxCommanders + MaxCombatSailHands + MaxEmergencyMedics + MaxEmergencyRepairMen +
-                                       MaxGunners + MaxCombatLookouts + PowderMonkeys;
+                                       MaxGunners + MaxCombatLookouts + MaxPowderMonkeys;
 
             var boardingRoleCount = MaxSwordsmen + MaxMusketeers;
 

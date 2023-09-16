@@ -2,13 +2,13 @@ namespace Crew.Enums
 {
     public enum NonCombatRole
     {
+        Swabbie,//Default
         Quartermaster,
         Cook,
         Boatswain,
-        SailHand,
         Lookout,
         Doctor,
         ShantyMan,
-        Swabbie,
+        SailHand,
     }
 }

@@ -14,6 +14,9 @@ namespace Crew
     {
         public string Name;
         public string Nickname;
+        public NonCombatRole AssignedNonCombatRole;
+        public NavalCombatRole AssignedNavalCombatRole;
+        public BoardingRole AssignedBoardingRole;
         public CrewMemberRank Rank;
         public CrewMemberHealth Health;
         public CrewStats Speciality;

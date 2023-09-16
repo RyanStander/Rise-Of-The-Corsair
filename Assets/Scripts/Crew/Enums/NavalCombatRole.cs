@@ -2,13 +2,13 @@ namespace Crew.Enums
 {
     public enum NavalCombatRole
     {
+        CombatSupport,//Default Role
         Commander,
-        SailHand,
+        Gunner,
         EmergencyMedic,
         EmergencyRepairMan,
-        Gunner,
         Lookout,
+        SailHand,
         PowderMonkey,
-        CombatSupport,
     }
 }
