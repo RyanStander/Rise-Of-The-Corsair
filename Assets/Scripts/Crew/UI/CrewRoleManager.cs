@@ -15,7 +15,7 @@ namespace Crew.UI
         [SerializeField] private ScrollRect crewRoleScrollRect;
         [SerializeField] private ShipData playerShipData;
 
-        private Dictionary<NonCombatRole,CrewRoleSectionUI> NonCombatRoles = new();
+        private Dictionary<NonCombatRole, CrewRoleSectionUI> NonCombatRoles = new();
         private List<CrewRoleSectionUI> NavalCombatRoles = new();
         private List<CrewRoleSectionUI> BoardingRoles = new();
 
@@ -25,7 +25,7 @@ namespace Crew.UI
 
         private void OnValidate()
         {
-            if(playerShipData == null)
+            if (playerShipData == null)
                 playerShipData = FindFirstObjectByType<ShipData>();
 
             if (crewRoleScrollRect == null)
@@ -46,14 +46,14 @@ namespace Crew.UI
         private void CreateNonCombatRoles()
         {
             //Create role section for Non Combat
-            NonCombatRoles.Add(NonCombatRole.Quartermaster,CreateRoleUI(NonCombatRole.Quartermaster));
-            NonCombatRoles.Add(NonCombatRole.Cook,CreateRoleUI(NonCombatRole.Cook));
-            NonCombatRoles.Add(NonCombatRole.Boatswain,CreateRoleUI(NonCombatRole.Boatswain));
-            NonCombatRoles.Add(NonCombatRole.Lookout,CreateRoleUI(NonCombatRole.Lookout));
-            NonCombatRoles.Add(NonCombatRole.Doctor,CreateRoleUI(NonCombatRole.Doctor));
-            NonCombatRoles.Add(NonCombatRole.ShantyMan,CreateRoleUI(NonCombatRole.ShantyMan));
-            NonCombatRoles.Add(NonCombatRole.SailHand,CreateRoleUI(NonCombatRole.SailHand));
-            NonCombatRoles.Add(NonCombatRole.Swabbie,CreateRoleUI(NonCombatRole.Swabbie));
+            NonCombatRoles.Add(NonCombatRole.Quartermaster, CreateRoleUI(NonCombatRole.Quartermaster));
+            NonCombatRoles.Add(NonCombatRole.Cook, CreateRoleUI(NonCombatRole.Cook));
+            NonCombatRoles.Add(NonCombatRole.Boatswain, CreateRoleUI(NonCombatRole.Boatswain));
+            NonCombatRoles.Add(NonCombatRole.Lookout, CreateRoleUI(NonCombatRole.Lookout));
+            NonCombatRoles.Add(NonCombatRole.Doctor, CreateRoleUI(NonCombatRole.Doctor));
+            NonCombatRoles.Add(NonCombatRole.ShantyMan, CreateRoleUI(NonCombatRole.ShantyMan));
+            NonCombatRoles.Add(NonCombatRole.SailHand, CreateRoleUI(NonCombatRole.SailHand));
+            NonCombatRoles.Add(NonCombatRole.Swabbie, CreateRoleUI(NonCombatRole.Swabbie));
         }
 
         private void CreateNonCombatCrewMembers()
@@ -72,26 +72,27 @@ namespace Crew.UI
                 var index = NonCombatRoles[crewMember.CrewMemberStats.AssignedNonCombatRole].transform.GetSiblingIndex();
 
                 //move the crew member to the respective role section
-                crewMember.transform.SetSiblingIndex(index+1);
+                crewMember.transform.SetSiblingIndex(index);
             }
         }
 
         private CrewMemberUIData CreateNonCombatCrew(CrewMemberStats crewMemberStats)
         {
-            var crewMemberUI = Instantiate(crewMemberUIPrefab, crewRoleScrollRect.content).GetComponent<CrewMemberUIData>();
+            var crewMemberUI = Instantiate(crewMemberUIPrefab, crewRoleScrollRect.content)
+                .GetComponent<CrewMemberUIData>();
             crewMemberUI.SetCrewUI(crewMemberStats);
             return crewMemberUI;
         }
 
         private CrewRoleSectionUI CreateRoleUI(NonCombatRole nonCombatRole)
         {
-            var crewRoleSection = Instantiate(crewRoleSectionPrefab, crewRoleScrollRect.content).GetComponent<CrewRoleSectionUI>();
+            var crewRoleSection = Instantiate(crewRoleSectionPrefab, crewRoleScrollRect.content)
+                .GetComponent<CrewRoleSectionUI>();
             crewRoleSection.SetUI(nonCombatRole, playerShipData);
             return crewRoleSection;
         }
 
         #endregion
-
 
 
         private void CreateNavalCombatRoles()
@@ -115,21 +116,22 @@ namespace Crew.UI
 
         private CrewRoleSectionUI CreateRoleUI(NavalCombatRole navalCombatRole)
         {
-            var crewRoleSection = Instantiate(crewRoleSectionPrefab, crewRoleScrollRect.content).GetComponent<CrewRoleSectionUI>();
+            var crewRoleSection = Instantiate(crewRoleSectionPrefab, crewRoleScrollRect.content)
+                .GetComponent<CrewRoleSectionUI>();
             crewRoleSection.SetUI(navalCombatRole, playerShipData);
             return crewRoleSection;
         }
 
         private CrewRoleSectionUI CreateRoleUI(BoardingRole boardingRole)
         {
-            var crewRoleSection = Instantiate(crewRoleSectionPrefab, crewRoleScrollRect.content).GetComponent<CrewRoleSectionUI>();
+            var crewRoleSection = Instantiate(crewRoleSectionPrefab, crewRoleScrollRect.content)
+                .GetComponent<CrewRoleSectionUI>();
             crewRoleSection.SetUI(boardingRole, playerShipData);
             return crewRoleSection;
         }
 
         private void OrderCrewMembers()
         {
-
         }
     }
 }

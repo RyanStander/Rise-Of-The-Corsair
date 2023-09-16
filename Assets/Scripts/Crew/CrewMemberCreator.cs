@@ -25,6 +25,8 @@ namespace Crew
             crewMemberStats.Name = GetRandomName(Faction.Dutch, crewMemberNamesAsset);
             crewMemberStats.Nickname = GetRandomNickname(Faction.Dutch, crewMemberNicknamesAsset);
 
+            crewMemberStats.AssignedNonCombatRole = (NonCombatRole) Random.Range(0, 8);
+
             crewMemberStats.Health = RandomHealth();
 
             crewMemberStats.Rank = DetermineRank(crewMemberStats.Level);
