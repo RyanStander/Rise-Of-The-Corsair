@@ -17,9 +17,9 @@ namespace Crew
         public Sprite NavigationSprite;
         public Sprite CookingSprite;
 
-        public Sprite GetSprite(CrewStats specialization)
+        public Sprite GetSprite(CrewStats stat)
         {
-            return specialization switch
+            return stat switch
             {
                 CrewStats.Strength => StrengthSprite,
                 CrewStats.Agility => AgilitySprite,
@@ -30,7 +30,7 @@ namespace Crew
                 CrewStats.Leadership => LeadershipSprite,
                 CrewStats.Navigation => NavigationSprite,
                 CrewStats.Cooking => CookingSprite,
-                _ => throw new ArgumentOutOfRangeException(nameof(specialization), specialization, null)
+                _ => throw new ArgumentOutOfRangeException(nameof(stat), stat, null)
             };
         }
     }

@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Crew
+namespace Crew.UI
 {
     public class CrewRecruitment : MonoBehaviour
     {

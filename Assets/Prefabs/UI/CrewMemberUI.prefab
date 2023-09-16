@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 9148472922747758874}
   - component: {fileID: 5197722913379810474}
   m_Layer: 5
-  m_Name: StatIcon (5)
+  m_Name: MedicineStatIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1046,7 +1046,7 @@ GameObject:
   - component: {fileID: 3621709176707534235}
   - component: {fileID: 2519658204866578514}
   m_Layer: 5
-  m_Name: StatIcon (8)
+  m_Name: CookingStatIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1156,6 +1156,7 @@ GameObject:
   - component: {fileID: 3823131343191006434}
   - component: {fileID: 9206558122990303719}
   - component: {fileID: 6971384449915221769}
+  - component: {fileID: 6744220385926542774}
   m_Layer: 5
   m_Name: CrewMemberUI
   m_TagString: Untagged
@@ -1225,6 +1226,41 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6744220385926542774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3855931961954819310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156595f584fc452697af3b831f6e5b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crewSprites: {fileID: 11400000, guid: c7ac3883823a4b44aaafc8702347c250, type: 2}
+  crewSpecializationImage: {fileID: 2333694281499764420}
+  nicknameText: {fileID: 8788728416613158153}
+  strengthImage: {fileID: 2677531496301212338}
+  strengthText: {fileID: 2029994224400093155}
+  agilityImage: {fileID: 2754570911021659989}
+  agilityText: {fileID: 4897983494662147373}
+  marksmanshipImage: {fileID: 5290493230408657616}
+  marksmanshipText: {fileID: 9031140959256878989}
+  sailingImage: {fileID: 4311315374772513869}
+  sailingText: {fileID: 4994670164800553340}
+  repairImage: {fileID: 3863350065316453612}
+  repairText: {fileID: 4680924953123997537}
+  medicineImage: {fileID: 5197722913379810474}
+  medicineText: {fileID: 3298291050286280619}
+  leadershipImage: {fileID: 5707503780194085427}
+  leadershipText: {fileID: 8441020475759891785}
+  navigationImage: {fileID: 8332026364496862817}
+  navigationText: {fileID: 7456252978571000734}
+  cookingImage: {fileID: 2519658204866578514}
+  cookingText: {fileID: 9071827380831660711}
+  moraleSlider: {fileID: 5815295218983098780}
+  roleDropdown: {fileID: 0}
 --- !u!1 &3997772555084560327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,7 +1273,7 @@ GameObject:
   - component: {fileID: 718266293919104861}
   - component: {fileID: 2754570911021659989}
   m_Layer: 5
-  m_Name: StatIcon (1)
+  m_Name: AgilityStatIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1802,7 +1838,7 @@ GameObject:
   - component: {fileID: 5443978030931794481}
   - component: {fileID: 4311315374772513869}
   m_Layer: 5
-  m_Name: StatIcon (3)
+  m_Name: SailingStatIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2582,7 +2618,7 @@ GameObject:
   - component: {fileID: 5018857203793064869}
   - component: {fileID: 8332026364496862817}
   m_Layer: 5
-  m_Name: StatIcon (7)
+  m_Name: NavigationStatIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2881,7 +2917,7 @@ GameObject:
   - component: {fileID: 7185539163583913527}
   - component: {fileID: 3863350065316453612}
   m_Layer: 5
-  m_Name: StatIcon (4)
+  m_Name: RepairStatIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3216,7 +3252,7 @@ GameObject:
   - component: {fileID: 178816417961954131}
   - component: {fileID: 2677531496301212338}
   m_Layer: 5
-  m_Name: StatIcon
+  m_Name: StrengthStatIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3291,7 +3327,7 @@ GameObject:
   - component: {fileID: 5557835692245208179}
   - component: {fileID: 5290493230408657616}
   m_Layer: 5
-  m_Name: StatIcon (2)
+  m_Name: MarksmanshipStatIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3366,7 +3402,7 @@ GameObject:
   - component: {fileID: 7603480890725039481}
   - component: {fileID: 5707503780194085427}
   m_Layer: 5
-  m_Name: StatIcon (6)
+  m_Name: LeadershipStatIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
