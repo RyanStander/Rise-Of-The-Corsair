@@ -10,10 +10,13 @@ namespace Crew.UI
         private void Update()
         {
             //when c is pressed, toggle the crew management panel
-            if (Input.GetKeyUp(KeyCode.C))
-            {
-                crewManagementPanel.SetActive(!crewManagementPanel.activeSelf);
-            }
+            if (!Input.GetKeyUp(KeyCode.C))
+                return;
+            
+            crewManagementPanel.SetActive(!crewManagementPanel.activeSelf);
+
+            //if the crew management panel is active, pause the game
+            Time.timeScale = crewManagementPanel.activeSelf ? 0 : 1;
         }
     }
 }
