@@ -60,6 +60,8 @@ namespace Events
         }
     }
 
+    #region Crew
+
     public class RecruitCrewMember : EventData
     {
         public readonly CrewMemberStats CrewMemberStats;
@@ -68,4 +70,17 @@ namespace Events
             CrewMemberStats = crewMemberStats;
         }
     }
+
+    public class SortCrewMember : EventData
+    {
+        public readonly CrewMemberStats CrewMemberStats;
+        public SortCrewMember(CrewMemberStats crewMemberStats) : base(EventIdentifiers.SortCrewMember)
+        {
+            CrewMemberStats = crewMemberStats;
+        }
+    }
+
+    #endregion
+
+
 }

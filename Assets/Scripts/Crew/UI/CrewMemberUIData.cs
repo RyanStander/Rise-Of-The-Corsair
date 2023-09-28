@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Crew.Enums;
+using Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -81,12 +83,40 @@ namespace Crew.UI
 
             moraleSlider.value = crewMemberStats.Morale;
 
-            //TODO: Set role dropdown
+            SetDropdownValues();
+
+            roleDropdown.onValueChanged.AddListener(RoleDropdownValueChanged);
         }
 
         public void SetMainStats(List<CrewStats> mainStats)
         {
 
+        }
+
+        private void RoleDropdownValueChanged(int value)
+        {
+            var nonCombatRole = (NonCombatRole) value;
+
+            CrewMemberStats.AssignedNonCombatRole = nonCombatRole;
+
+            EventManager.currentManager.AddEvent(new SortCrewMember(CrewMemberStats));
+        }
+
+        private void SetDropdownValues()
+        {
+            roleDropdown.ClearOptions();
+
+            //set the options of the dropdown to all non combat roles
+            var options = new List<TMP_Dropdown.OptionData>();
+            foreach (var nonCombatRole in Enum.GetValues(typeof(NonCombatRole)))
+            {
+                options.Add(new TMP_Dropdown.OptionData(nonCombatRole.ToString()));
+            }
+
+            roleDropdown.AddOptions(options);
+
+            //set the value of the dropdown to the index of the assigned non combat role
+            roleDropdown.value = (int) CrewMemberStats.AssignedNonCombatRole;
         }
     }
 }
