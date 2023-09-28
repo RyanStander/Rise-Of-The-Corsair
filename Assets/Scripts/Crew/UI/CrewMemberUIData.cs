@@ -208,7 +208,6 @@ namespace Crew.UI
                         options.Add(new TMP_Dropdown.OptionData(RoleEnumToString.GetRoleString((NavalCombatRole)i)));
                         break;
                     case CrewRoleType.BoardingRole:
-                        Debug.Log((BoardingRole)i);
                         options.Add(new TMP_Dropdown.OptionData(RoleEnumToString.GetRoleString((BoardingRole)i)));
                         break;
                     default:
