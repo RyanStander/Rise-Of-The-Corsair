@@ -50,4 +50,21 @@ public static class CustomUtilitiesManager
 
         return false;
     }
+
+    /// <summary>
+    /// Adds a space before every capital letter in a string.
+    /// </summary>
+    /// <param name="text">The string to add spaces to.</param>
+    public static string AddSpaceBeforeCapitals(string text)
+    {
+        for (var i = 1; i < text.Length; i++)
+        {
+            if (char.IsUpper(text[i]))
+            {
+                text = text.Insert(i-1, " ");
+            }
+        }
+
+        return text;
+    }
 }

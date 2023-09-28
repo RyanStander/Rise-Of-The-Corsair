@@ -18,11 +18,13 @@ namespace Crew.UI
 
             var maxCrewCount = GetMaxCrewRoleCount(nonCombatRole, shipData);
 
+            SetMainStatText(nonCombatRole);
+
             roleText.text = maxCrewCount switch
             {
-                -1 => nonCombatRole + " " + crewCount,
-                0 => nonCombatRole + " No Space",
-                _ => nonCombatRole + " " + crewCount + "/" + maxCrewCount
+                -1 => RoleEnumToString.GetRoleString(nonCombatRole) + " " + crewCount,
+                0 => RoleEnumToString.GetRoleString(nonCombatRole) + " No Space",
+                _ => RoleEnumToString.GetRoleString(nonCombatRole) + " " + crewCount + "/" + maxCrewCount
             };
         }
 
@@ -34,9 +36,9 @@ namespace Crew.UI
 
             roleText.text = maxCrewCount switch
             {
-                -1 => navalCombatRole + " " + crewCount,
-                0 => navalCombatRole + " No Space",
-                _ => navalCombatRole + " " + crewCount + "/" + maxCrewCount
+                -1 => RoleEnumToString.GetRoleString(navalCombatRole) + " " + crewCount,
+                0 => RoleEnumToString.GetRoleString(navalCombatRole) + " No Space",
+                _ => RoleEnumToString.GetRoleString(navalCombatRole) + " " + crewCount + "/" + maxCrewCount
             };
         }
 
@@ -48,9 +50,9 @@ namespace Crew.UI
 
             roleText.text = maxCrewCount switch
             {
-                -1 => boardingRole + " " + crewCount,
-                0 => boardingRole + " No Space",
-                _ => boardingRole + " " + crewCount + "/" + maxCrewCount
+                -1 => RoleEnumToString.GetRoleString(boardingRole) + " " + crewCount,
+                0 => RoleEnumToString.GetRoleString(boardingRole) + " No Space",
+                _ => RoleEnumToString.GetRoleString(boardingRole) + " " + crewCount + "/" + maxCrewCount
             };
         }
 
@@ -96,5 +98,14 @@ namespace Crew.UI
                 _ => throw new ArgumentOutOfRangeException(nameof(boardingRole), boardingRole, null)
             };
         }
+
+        private void SetMainStatText(NonCombatRole nonCombatRole)
+        {
+            var mainStat = CrewMainStats.MainNonCombatStat[nonCombatRole].ToString();
+
+            mainStatText.text = mainStat;
+        }
+
+
     }
 }

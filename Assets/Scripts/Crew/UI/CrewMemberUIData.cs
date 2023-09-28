@@ -65,7 +65,7 @@ namespace Crew.UI
                 cookingImage.sprite = crewSprites.CookingSprite;
         }
 
-        public void SetCrewUI(CrewMemberStats crewMemberStats)
+        public void SetCrewUI(CrewMemberStats crewMemberStats, CrewRoleType crewRoleType)
         {
             CrewMemberStats = crewMemberStats;
 
@@ -83,15 +83,31 @@ namespace Crew.UI
             navigationText.text = crewMemberStats.Navigation.ToString();
             cookingText.text = crewMemberStats.Cooking.ToString();
 
-            var mainStats = new List<CrewStats>
-                { CrewMainStats.MainNonCombatStat[crewMemberStats.AssignedNonCombatRole] };
+            var mainStats = new List<CrewStats>();
+
+            switch (crewRoleType)
+            {
+                case CrewRoleType.NonCombatRole:
+                    mainStats.Add(CrewMainStats.MainNonCombatStat[crewMemberStats.AssignedNonCombatRole]);
+                    roleDropdown.onValueChanged.AddListener(NonCombatRoleDropdownValueChanged);
+                    break;
+                case CrewRoleType.NavalCombatRole:
+                    mainStats.Add(CrewMainStats.MainNavalCombatStat[crewMemberStats.AssignedNavalCombatRole]);
+                    roleDropdown.onValueChanged.AddListener(NavalCombatRoleDropdownValueChanged);
+                    break;
+                case CrewRoleType.BoardingRole:
+                    mainStats.Add(CrewMainStats.MainBoardingStat[crewMemberStats.AssignedBoardingRole]);
+                    roleDropdown.onValueChanged.AddListener(BoardingRoleDropdownValueChanged);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(crewRoleType), crewRoleType, null);
+            }
+
             SetMainStats(mainStats);
 
             moraleSlider.value = crewMemberStats.Morale;
 
-            SetDropdownValues();
-
-            roleDropdown.onValueChanged.AddListener(RoleDropdownValueChanged);
+            SetDropdownValues(crewRoleType);
         }
 
         private void SetMainStats(ICollection<CrewStats> mainStats)
@@ -131,7 +147,7 @@ namespace Crew.UI
             cookingText.color = mainStats.Contains(CrewStats.Cooking) ? mainStatHighlightColor : nonHighlightedColor;
         }
 
-        private void RoleDropdownValueChanged(int value)
+        private void NonCombatRoleDropdownValueChanged(int value)
         {
             var nonCombatRole = (NonCombatRole)value;
 
@@ -144,21 +160,72 @@ namespace Crew.UI
             EventManager.currentManager.AddEvent(new SortCrewMember(CrewMemberStats));
         }
 
-        private void SetDropdownValues()
+        private void NavalCombatRoleDropdownValueChanged(int value)
+        {
+            var navalCombatRole = (NavalCombatRole)value;
+
+            CrewMemberStats.AssignedNavalCombatRole = navalCombatRole;
+
+            var mainStats = new List<CrewStats> { CrewMainStats.MainNavalCombatStat[navalCombatRole] };
+
+            SetMainStats(mainStats);
+
+            EventManager.currentManager.AddEvent(new SortCrewMember(CrewMemberStats));
+        }
+
+        private void BoardingRoleDropdownValueChanged(int value)
+        {
+            var boardingRole = (BoardingRole)value;
+
+            CrewMemberStats.AssignedBoardingRole = boardingRole;
+
+            var mainStats = new List<CrewStats> { CrewMainStats.MainBoardingStat[boardingRole] };
+
+            SetMainStats(mainStats);
+
+            EventManager.currentManager.AddEvent(new SortCrewMember(CrewMemberStats));
+        }
+
+        private void SetDropdownValues(CrewRoleType crewRoleType)
         {
             roleDropdown.ClearOptions();
 
             //set the options of the dropdown to all non combat roles
             var options = new List<TMP_Dropdown.OptionData>();
-            foreach (var nonCombatRole in Enum.GetValues(typeof(NonCombatRole)))
+
+            var count = 8;
+            if (crewRoleType == CrewRoleType.BoardingRole)
+                count = 3;
+
+            for (var i = 0; i < count; i++)
             {
-                options.Add(new TMP_Dropdown.OptionData(nonCombatRole.ToString()));
+                switch (crewRoleType)
+                {
+                    case CrewRoleType.NonCombatRole:
+                        options.Add(new TMP_Dropdown.OptionData(RoleEnumToString.GetRoleString((NonCombatRole)i)));
+                        break;
+                    case CrewRoleType.NavalCombatRole:
+                        options.Add(new TMP_Dropdown.OptionData(RoleEnumToString.GetRoleString((NavalCombatRole)i)));
+                        break;
+                    case CrewRoleType.BoardingRole:
+                        Debug.Log((BoardingRole)i);
+                        options.Add(new TMP_Dropdown.OptionData(RoleEnumToString.GetRoleString((BoardingRole)i)));
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(crewRoleType), crewRoleType, null);
+                }
             }
 
             roleDropdown.AddOptions(options);
 
             //set the value of the dropdown to the index of the assigned non combat role
-            roleDropdown.value = (int)CrewMemberStats.AssignedNonCombatRole;
+            roleDropdown.value = crewRoleType switch
+            {
+                CrewRoleType.NonCombatRole => (int)CrewMemberStats.AssignedNonCombatRole,
+                CrewRoleType.NavalCombatRole => (int)CrewMemberStats.AssignedNavalCombatRole,
+                CrewRoleType.BoardingRole => (int)CrewMemberStats.AssignedBoardingRole,
+                _ => throw new ArgumentOutOfRangeException(nameof(crewRoleType), crewRoleType, null)
+            };
         }
     }
 }

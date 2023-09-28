@@ -22,10 +22,12 @@ namespace Crew
             crewMemberStats.Level = currentLevel;
 
             //TODO: change this to faction based on location or ship obtained from
-            crewMemberStats.Name = GetRandomName(Faction.Dutch, crewMemberNamesAsset);
-            crewMemberStats.Nickname = GetRandomNickname(Faction.Dutch, crewMemberNicknamesAsset);
+            crewMemberStats.Name = GetRandomName(Faction.English, crewMemberNamesAsset);
+            crewMemberStats.Nickname = GetRandomNickname(Faction.English, crewMemberNicknamesAsset);
 
             crewMemberStats.AssignedNonCombatRole = (NonCombatRole) Random.Range(0, 8);
+            crewMemberStats.AssignedNavalCombatRole = (NavalCombatRole) Random.Range(0, 8);
+            crewMemberStats.AssignedBoardingRole = (BoardingRole) Random.Range(0, 3);
 
             crewMemberStats.Health = RandomHealth();
 
