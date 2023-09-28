@@ -107,7 +107,7 @@ namespace AI.Ships
 
         private float GetManeuverabilityModifier()
         {
-            return shipData.Stats.maneuverability switch
+            return shipData.Stats.Maneuverability switch
             {
                 ShipManeuverability.Low => 1,
                 ShipManeuverability.LowMid => 1.25f,

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db93c36bfbde4b718ba79478c544189e, type: 3}
+  m_Name: Merchantman
+  m_EditorClassIdentifier: 
+  <ShipPrefab>k__BackingField: {fileID: 8215559743071552748, guid: ce1e36ceb6f12eb4d95d9bbfb1ba0ec9, type: 3}
+  <Rarity>k__BackingField: 1
+  <Size>k__BackingField: 1
+  <Maneuverability>k__BackingField: 4
+  <Durability>k__BackingField: 1
+  <BestSailingPoint>k__BackingField: 2
+  <SpeedModifier>k__BackingField: 1
+  <MaxSpeed>k__BackingField: 14
+  <MinSpeed>k__BackingField: 0.5
+  <CargoCapacity>k__BackingField: 100
+  <BasicSalePrice>k__BackingField: 150
+  <MaxCannons>k__BackingField: 12
+  <SailMaxHealth>k__BackingField: 500
+  <HullMaxHealth>k__BackingField: 1000
+  <MastMaxHealth>k__BackingField: 250
+  MaxCrew: 100
+  MinCrew: 27
+  MaxQuartermasters: 1
+  MaxCooks: 2
+  MaxBoatswains: 2
+  MaxSailHands: 8
+  MaxLookouts: 1
+  MaxDoctors: 2
+  MaxShantyMen: 1
+  MaxCommanders: 1
+  MaxCombatSailHands: 8
+  MaxEmergencyMedics: 1
+  MaxEmergencyRepairMen: 1
+  MaxGunners: 12
+  MaxCombatLookouts: 1
+  PowderMonkeys: 3
+  MaxSwordsmen: 5
+  MaxMusketeers: 5

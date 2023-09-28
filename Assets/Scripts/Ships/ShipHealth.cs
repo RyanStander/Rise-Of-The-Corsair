@@ -66,8 +66,6 @@ namespace Ships
                     throw new ArgumentOutOfRangeException(nameof(partHit), partHit, null);
             }
 
-            Debug.Log("Ship: " + gameObject.name + " hull health: " + HullCurrentHealth);
-
             if (HullCurrentHealth <= 0)
             {
                 //ship is destroyed

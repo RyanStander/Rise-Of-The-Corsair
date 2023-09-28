@@ -2937,6 +2937,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c669b83697e1402da40af776fb11a80d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crewLevelData: {fileID: 11400000, guid: 065c861c6ca71874da645fc40c022d00, type: 2}
+  crewMemberNamesAsset: {fileID: 4900000, guid: fac28ad3bd4a58e4f8adec089e74d74b, type: 3}
+  crewMemberNicknamesAsset: {fileID: 4900000, guid: fef4287050be0ad48b0d06adc24b5e53, type: 3}
   Stats: {fileID: 11400000, guid: c10231249e9f24d4e9a7a445bdf83106, type: 2}
 --- !u!114 &6985146153321231309
 MonoBehaviour:
