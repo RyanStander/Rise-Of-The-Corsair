@@ -35,6 +35,8 @@ namespace Crew.UI
 
         [Header("Misc")] [SerializeField] private Slider moraleSlider;
         [SerializeField] private TMP_Dropdown roleDropdown;
+        [SerializeField] private Color mainStatHighlightColor = Color.green;
+        [SerializeField] private Color nonHighlightedColor = Color.white;
 
         public CrewMemberStats CrewMemberStats;
 
@@ -81,6 +83,10 @@ namespace Crew.UI
             navigationText.text = crewMemberStats.Navigation.ToString();
             cookingText.text = crewMemberStats.Cooking.ToString();
 
+            var mainStats = new List<CrewStats>
+                { CrewMainStats.MainNonCombatStat[crewMemberStats.AssignedNonCombatRole] };
+            SetMainStats(mainStats);
+
             moraleSlider.value = crewMemberStats.Morale;
 
             SetDropdownValues();
@@ -88,16 +94,52 @@ namespace Crew.UI
             roleDropdown.onValueChanged.AddListener(RoleDropdownValueChanged);
         }
 
-        public void SetMainStats(List<CrewStats> mainStats)
+        private void SetMainStats(ICollection<CrewStats> mainStats)
         {
+            strengthImage.color = mainStats.Contains(CrewStats.Strength) ? mainStatHighlightColor : nonHighlightedColor;
+            strengthText.color = mainStats.Contains(CrewStats.Strength) ? mainStatHighlightColor : nonHighlightedColor;
 
+            agilityImage.color = mainStats.Contains(CrewStats.Agility) ? mainStatHighlightColor : nonHighlightedColor;
+            agilityText.color = mainStats.Contains(CrewStats.Agility) ? mainStatHighlightColor : nonHighlightedColor;
+
+            marksmanshipImage.color = mainStats.Contains(CrewStats.Marksmanship)
+                ? mainStatHighlightColor
+                : nonHighlightedColor;
+            marksmanshipText.color =
+                mainStats.Contains(CrewStats.Marksmanship) ? mainStatHighlightColor : nonHighlightedColor;
+
+            sailingImage.color = mainStats.Contains(CrewStats.Sailing) ? mainStatHighlightColor : nonHighlightedColor;
+            sailingText.color = mainStats.Contains(CrewStats.Sailing) ? mainStatHighlightColor : nonHighlightedColor;
+
+            repairImage.color = mainStats.Contains(CrewStats.Repair) ? mainStatHighlightColor : nonHighlightedColor;
+            repairText.color = mainStats.Contains(CrewStats.Repair) ? mainStatHighlightColor : nonHighlightedColor;
+
+            medicineImage.color = mainStats.Contains(CrewStats.Medicine) ? mainStatHighlightColor : nonHighlightedColor;
+            medicineText.color = mainStats.Contains(CrewStats.Medicine) ? mainStatHighlightColor : nonHighlightedColor;
+
+            leadershipImage.color =
+                mainStats.Contains(CrewStats.Leadership) ? mainStatHighlightColor : nonHighlightedColor;
+            leadershipText.color =
+                mainStats.Contains(CrewStats.Leadership) ? mainStatHighlightColor : nonHighlightedColor;
+
+            navigationImage.color =
+                mainStats.Contains(CrewStats.Navigation) ? mainStatHighlightColor : nonHighlightedColor;
+            navigationText.color =
+                mainStats.Contains(CrewStats.Navigation) ? mainStatHighlightColor : nonHighlightedColor;
+
+            cookingImage.color = mainStats.Contains(CrewStats.Cooking) ? mainStatHighlightColor : nonHighlightedColor;
+            cookingText.color = mainStats.Contains(CrewStats.Cooking) ? mainStatHighlightColor : nonHighlightedColor;
         }
 
         private void RoleDropdownValueChanged(int value)
         {
-            var nonCombatRole = (NonCombatRole) value;
+            var nonCombatRole = (NonCombatRole)value;
 
             CrewMemberStats.AssignedNonCombatRole = nonCombatRole;
+
+            var mainStats = new List<CrewStats> { CrewMainStats.MainNonCombatStat[nonCombatRole] };
+
+            SetMainStats(mainStats);
 
             EventManager.currentManager.AddEvent(new SortCrewMember(CrewMemberStats));
         }
@@ -116,7 +158,7 @@ namespace Crew.UI
             roleDropdown.AddOptions(options);
 
             //set the value of the dropdown to the index of the assigned non combat role
-            roleDropdown.value = (int) CrewMemberStats.AssignedNonCombatRole;
+            roleDropdown.value = (int)CrewMemberStats.AssignedNonCombatRole;
         }
     }
 }

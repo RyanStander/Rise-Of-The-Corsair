@@ -10,6 +10,7 @@ namespace Crew.Enums
         Medicine,
         Leadership,
         Navigation,
-        Cooking
+        Cooking,
+        Unassigned
     }
 }
