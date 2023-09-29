@@ -9,7 +9,7 @@ namespace Crew
 {
     public abstract class CrewMemberCreator
     {
-        private const int MaxStat = 40;
+        public const int MaxStat = 40;
         private const int SpecialityBonus = 15;
 
         public static CrewMemberStats GenerateCrewMemberStats(int currentLevel, CrewLevelData crewLevelData,

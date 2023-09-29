@@ -1,4 +1,7 @@
 using System;
+using System.Linq;
+using Crew;
+using Crew.Enums;
 using Ships.Enums;
 using UnityEngine;
 
@@ -6,7 +9,7 @@ namespace Ships
 {
     public class ShipReloading : MonoBehaviour
     {
-        [SerializeField] private float baseReloadTime = 2;
+        [SerializeField] private float baseReloadTime = 5;
         [SerializeField] private ShipData shipData;
         private float timeSinceLastFireStarboard;
         private float timeSinceLastFirePort;
@@ -34,12 +37,38 @@ namespace Ships
         /// </summary>
         public void StartReload(ShipSide side)
         {
-            float crewDifference = shipData.CrewMembers.Count - shipData.Stats.MinCrew;
-            float crewDifferenceMax = shipData.Stats.MaxCrew - shipData.Stats.MinCrew;
-            var crewDifferenceModifier = Mathf.Max(1 - crewDifference / crewDifferenceMax, 0.25f);
+            var reloadTime = DetermineReloadTime();
 
-            var reloadTime = Time.time + baseReloadTime * crewDifferenceModifier;
+            SetReloadTimes(reloadTime, side);
+        }
 
+        private float DetermineReloadTime()
+        {
+            //Count the number of powder monkeys
+            float currentPowderMonkeys = shipData.CrewMembers
+                .FindAll(x => x.AssignedNavalCombatRole == NavalCombatRole.PowderMonkey).Count;
+
+            const float crewDifferenceMin = 0.1f;
+            var powderMonkeyModifier =
+                Mathf.Max(currentPowderMonkeys / shipData.Stats.MaxPowderMonkeys, crewDifferenceMin);
+            //there should be not benefit to more powder monkeys than cannons
+            powderMonkeyModifier = Mathf.Min(powderMonkeyModifier, 1);
+
+            //average the main stat score of all powder monkeys
+            var averageOfStat = CrewUtilities.DetermineAverageOfStat(
+                shipData.CrewMembers.FindAll(x => x.AssignedNavalCombatRole == NavalCombatRole.PowderMonkey),
+                CrewMainStats.MainNavalCombatStat[NavalCombatRole.PowderMonkey]);
+            var statModifier = averageOfStat / CrewMemberCreator.MaxStat;
+
+            var reloadTime = Time.time + baseReloadTime * (2 - powderMonkeyModifier) - baseReloadTime/2*statModifier;
+
+            Debug.Log($"Reload time: {reloadTime-Time.time} = {baseReloadTime} * (2 - {powderMonkeyModifier}) - {baseReloadTime}/2*{statModifier}");
+
+            return reloadTime;
+        }
+
+        private void SetReloadTimes(float reloadTime, ShipSide side)
+        {
             switch (side)
             {
                 case ShipSide.Starboard:

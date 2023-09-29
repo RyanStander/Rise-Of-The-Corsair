@@ -2968,7 +2968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd52461a6869435aaa73d9160566208d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseReloadTime: 2
+  baseReloadTime: 5
   shipData: {fileID: 4060415071648138451}
 --- !u!114 &298742851295805317
 MonoBehaviour:
