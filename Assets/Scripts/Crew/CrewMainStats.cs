@@ -21,7 +21,7 @@ namespace Crew
         {
             {NavalCombatRole.CombatSupport, CrewStats.Unassigned},
             {NavalCombatRole.Commander, CrewStats.Leadership},
-            {NavalCombatRole.Gunner, CrewStats.Strength},
+            {NavalCombatRole.Gunner, CrewStats.Marksmanship},
             {NavalCombatRole.EmergencyMedic, CrewStats.Medicine},
             {NavalCombatRole.EmergencyRepairMan, CrewStats.Repair},
             {NavalCombatRole.Lookout, CrewStats.Navigation},

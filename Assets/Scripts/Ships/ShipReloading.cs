@@ -1,4 +1,7 @@
 using System;
+using System.Linq;
+using Crew;
+using Crew.Enums;
 using Ships.Enums;
 using UnityEngine;
 
@@ -6,15 +9,15 @@ namespace Ships
 {
     public class ShipReloading : MonoBehaviour
     {
-        [SerializeField] private float baseReloadTime = 2;
-        [SerializeField] private ShipData shipData;
+        [SerializeField] private float baseReloadTime = 5;
+        [SerializeField] private ShipManager shipManager;
         private float timeSinceLastFireStarboard;
         private float timeSinceLastFirePort;
 
         private void OnValidate()
         {
-            if (shipData == null)
-                shipData = GetComponent<ShipData>();
+            if (shipManager == null)
+                shipManager = GetComponent<ShipManager>();
         }
 
         public bool CanFire(ShipSide side)
@@ -34,12 +37,44 @@ namespace Ships
         /// </summary>
         public void StartReload(ShipSide side)
         {
-            float crewDifference = shipData.CrewMembers.Count - shipData.Stats.MinCrew;
-            float crewDifferenceMax = shipData.Stats.MaxCrew - shipData.Stats.MinCrew;
-            var crewDifferenceModifier = Mathf.Max(1 - crewDifference / crewDifferenceMax, 0.25f);
+            var reloadTime = DetermineReloadTime();
 
-            var reloadTime = Time.time + baseReloadTime * crewDifferenceModifier;
+            SetReloadTimes(reloadTime, side);
+        }
 
+        private float DetermineReloadTime()
+        {
+            const float crewDifferenceMin = 0.1f;
+            var powderMonkeyModifier =
+                Mathf.Max(
+                    (float)shipManager.ShipModifiers.GetRoleCount(NavalCombatRole.PowderMonkey) /
+                    shipManager.ShipData.Stats.MaxPowderMonkeys, crewDifferenceMin);
+            //there should be not benefit to more powder monkeys than cannons
+            powderMonkeyModifier = Mathf.Min(powderMonkeyModifier, 1);
+
+            var statModifier = shipManager.ShipModifiers.GetRoleStatAverage(NavalCombatRole.PowderMonkey) /
+                               CrewMemberCreator.MaxStat;
+
+            const float maxCombatSupportBonus = 1.5f;
+            var combatSupportBonus =
+                Mathf.Min(
+                    (float)shipManager.ShipModifiers.GetRoleCount(NavalCombatRole.CombatSupport) /
+                    shipManager.ShipData.Stats.MaxPowderMonkeys, maxCombatSupportBonus);
+
+            //Reload time is calculated as follows: takes the current time and adds the base reload time
+            //then it increases the reload time by the powder monkey modifier, the less powder monkeys the slower the reload
+            //then it uses the base reload time to determine how much time is to be reduces from the reload time based on the stat modifier, the higher the stat the faster the reload
+            var reloadTime = Time.time + baseReloadTime * (2 - powderMonkeyModifier) -
+                             baseReloadTime / 2 * statModifier * combatSupportBonus;
+
+            Debug.Log(
+                $"Reload Time: {reloadTime} = {Time.time} + {baseReloadTime} * (2 - {powderMonkeyModifier}) - {baseReloadTime} / 2 * {statModifier} * {combatSupportBonus}");
+
+            return (float)reloadTime;
+        }
+
+        private void SetReloadTimes(float reloadTime, ShipSide side)
+        {
             switch (side)
             {
                 case ShipSide.Starboard:

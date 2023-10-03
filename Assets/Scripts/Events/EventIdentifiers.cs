@@ -10,5 +10,6 @@ namespace Events
         NewWind=4,
         RecruitCrewMember=5,
         SortCrewMember=6,
+        RecalculatePlayerCrewModifiers=7,
     }
 }
