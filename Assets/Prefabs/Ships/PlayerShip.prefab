@@ -2025,7 +2025,7 @@ Transform:
   m_GameObject: {fileID: 7027085390162100491}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3.83}
+  m_LocalPosition: {x: 0, y: 0, z: 24.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2276,6 +2276,7 @@ GameObject:
   - component: {fileID: 7096223210722368429}
   - component: {fileID: 6357055051439117876}
   - component: {fileID: 1855341169158451511}
+  - component: {fileID: 3189065633053330980}
   m_Layer: 0
   m_Name: PlayerShip
   m_TagString: Player
@@ -2310,7 +2311,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0.5
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.5
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2360,13 +2361,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbd2f6b80eee4319b22a30db9add2727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipData: {fileID: 4190680601713946485}
-  shipWindMovement: {fileID: 3126376540316379090}
+  <ShipData>k__BackingField: {fileID: 4190680601713946485}
+  ShipWindMovement: {fileID: 3126376540316379090}
+  ShipReloading: {fileID: 6357055051439117876}
+  <ShipModifiers>k__BackingField: {fileID: 3189065633053330980}
+  Animator: {fileID: 5625707228479499429}
   playerShipSteering: {fileID: 5868225285238020163}
   playerFiring: {fileID: 1561456576704035926}
   playerAiming: {fileID: 7096223210722368429}
-  shipReloading: {fileID: 6357055051439117876}
-  animator: {fileID: 5625707228479499429}
 --- !u!114 &4190680601713946485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2454,7 +2456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseReloadTime: 5
-  shipData: {fileID: 4190680601713946485}
+  shipManager: {fileID: 254134186175849801}
 --- !u!114 &1855341169158451511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2468,6 +2470,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipData: {fileID: 4190680601713946485}
+--- !u!114 &3189065633053330980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8215559743071552748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5695faddeab14b72b87be2982baf9a98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8479247992125683934
 GameObject:
   m_ObjectHideFlags: 0
@@ -3601,7 +3615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca16791f942a29743bb643847a4fc484, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.8
+      value: 32.97
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca16791f942a29743bb643847a4fc484, type: 3}
       propertyPath: m_LocalRotation.w

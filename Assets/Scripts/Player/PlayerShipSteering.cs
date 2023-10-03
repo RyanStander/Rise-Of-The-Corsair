@@ -39,11 +39,11 @@ namespace Player
             //Check if the ship is turning left or right
             if (Input.GetKey(KeyCode.A))
             {
-                transform.Rotate(-turnMod);
+                shipRigidbody.AddTorque(-turnMod*100);
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                transform.Rotate(turnMod);
+                shipRigidbody.AddTorque(turnMod*100);
             }
         }
 
