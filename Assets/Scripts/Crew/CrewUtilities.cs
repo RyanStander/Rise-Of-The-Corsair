@@ -9,7 +9,7 @@ namespace Crew
     {
         public static float DetermineAverageOfStat(List<CrewMemberStats> crewMembers, CrewStats stat)
         {
-            float totalStat = crewMembers.Sum(crewMember =>
+            var totalStat = crewMembers.Sum(crewMember =>
             {
                 return stat switch
                 {
@@ -22,7 +22,7 @@ namespace Crew
                     CrewStats.Leadership => crewMember.Leadership,
                     CrewStats.Navigation => crewMember.Navigation,
                     CrewStats.Cooking => crewMember.Cooking,
-                    CrewStats.Unassigned => 0,
+                    CrewStats.Unassigned => 0f,
                     _ => throw new ArgumentOutOfRangeException(nameof(stat), stat, null)
                 };
             });
