@@ -80,6 +80,13 @@ namespace Events
         }
     }
 
+    public class RecalculatePlayerCrewModifiers : EventData
+    {
+        public RecalculatePlayerCrewModifiers() : base(EventIdentifiers.RecalculatePlayerCrewModifiers)
+        {
+        }
+    }
+
     #endregion
 
 

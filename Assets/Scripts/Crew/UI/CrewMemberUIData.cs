@@ -40,6 +40,8 @@ namespace Crew.UI
 
         public CrewMemberStats CrewMemberStats;
 
+        private bool isInitialized;
+
         private void OnValidate()
         {
             if (crewSprites == null)
@@ -149,6 +151,9 @@ namespace Crew.UI
 
         private void NonCombatRoleDropdownValueChanged(int value)
         {
+            if (!isInitialized)
+                return;
+
             var nonCombatRole = (NonCombatRole)value;
 
             CrewMemberStats.AssignedNonCombatRole = nonCombatRole;
@@ -158,10 +163,14 @@ namespace Crew.UI
             SetMainStats(mainStats);
 
             EventManager.currentManager.AddEvent(new SortCrewMember(CrewMemberStats));
+            EventManager.currentManager.AddEvent(new RecalculatePlayerCrewModifiers());
         }
 
         private void NavalCombatRoleDropdownValueChanged(int value)
         {
+            if (!isInitialized)
+                return;
+
             var navalCombatRole = (NavalCombatRole)value;
 
             CrewMemberStats.AssignedNavalCombatRole = navalCombatRole;
@@ -171,10 +180,14 @@ namespace Crew.UI
             SetMainStats(mainStats);
 
             EventManager.currentManager.AddEvent(new SortCrewMember(CrewMemberStats));
+            EventManager.currentManager.AddEvent(new RecalculatePlayerCrewModifiers());
         }
 
         private void BoardingRoleDropdownValueChanged(int value)
         {
+            if (!isInitialized)
+                return;
+
             var boardingRole = (BoardingRole)value;
 
             CrewMemberStats.AssignedBoardingRole = boardingRole;
@@ -184,6 +197,7 @@ namespace Crew.UI
             SetMainStats(mainStats);
 
             EventManager.currentManager.AddEvent(new SortCrewMember(CrewMemberStats));
+            EventManager.currentManager.AddEvent(new RecalculatePlayerCrewModifiers());
         }
 
         private void SetDropdownValues(CrewRoleType crewRoleType)
@@ -225,6 +239,8 @@ namespace Crew.UI
                 CrewRoleType.BoardingRole => (int)CrewMemberStats.AssignedBoardingRole,
                 _ => throw new ArgumentOutOfRangeException(nameof(crewRoleType), crewRoleType, null)
             };
+
+            isInitialized = true;
         }
     }
 }

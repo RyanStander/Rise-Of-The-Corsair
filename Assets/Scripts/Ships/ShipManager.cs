@@ -18,7 +18,7 @@ namespace Ships
         [SerializeField] protected ShipReloading ShipReloading;
         [field: SerializeField] public ShipModifiers ShipModifiers { get;private set; }
         [FormerlySerializedAs("animator")] [SerializeField] protected Animator Animator;
-        protected static readonly int IsSunk = Animator.StringToHash("IsSunk");
+        protected static readonly int isSunk = Animator.StringToHash("IsSunk");
 
         protected virtual void OnValidate()
         {

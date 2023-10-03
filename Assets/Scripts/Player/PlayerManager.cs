@@ -1,4 +1,5 @@
 using System;
+using Events;
 using Ships;
 using UnityEngine;
 
@@ -14,11 +15,35 @@ namespace Player
         [SerializeField] private PlayerFiring playerFiring;
         [SerializeField] private PlayerAiming playerAiming;
 
+        #region On Events
+
         protected override void OnValidate()
         {
             base.OnValidate();
             SetupPlayer();
         }
+
+        private void OnEnable()
+        {
+            EventManager.currentManager.Subscribe(EventIdentifiers.RecalculatePlayerCrewModifiers, OnSortPlayers);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.currentManager.Unsubscribe(EventIdentifiers.RecalculatePlayerCrewModifiers, OnSortPlayers);
+        }
+
+        private void OnSortPlayers(EventData eventData)
+        {
+            if (!eventData.IsEventOfType(out RecalculatePlayerCrewModifiers _))
+                return;
+
+            ShipModifiers.CalculateModifiers(ShipData);
+        }
+
+        #endregion
+
+
 
         private void SetupPlayer()
         {
@@ -36,7 +61,7 @@ namespace Player
 
             if (ShipData.IsSunk)
             {
-                Animator.SetBool(IsSunk, true);
+                Animator.SetBool(isSunk, true);
                 return;
             }
 
