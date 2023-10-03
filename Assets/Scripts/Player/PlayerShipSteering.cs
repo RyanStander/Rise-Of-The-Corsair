@@ -33,17 +33,18 @@ namespace Player
         //When A or D is held down, turn the ship based on its maneuverability
         private void TurnShip()
         {
-            var turnMod = Vector3.up * Mathf.Clamp(turnModifier * 1.25f * Time.deltaTime * maneuverabilityModifier *
-                                                   shipRigidbody.velocity.magnitude, 0.5f, 3f);
+            var turnStrength = 1.25f * Time.deltaTime * maneuverabilityModifier * shipRigidbody.velocity.magnitude;
+
+            var turnMod = Vector3.up * Mathf.Clamp(turnModifier * turnStrength, 0.5f, 3f);
 
             //Check if the ship is turning left or right
             if (Input.GetKey(KeyCode.A))
             {
-                shipRigidbody.AddTorque(-turnMod*100);
+                shipRigidbody.AddTorque(-turnMod * 100);
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                shipRigidbody.AddTorque(turnMod*100);
+                shipRigidbody.AddTorque(turnMod * 100);
             }
         }
 
