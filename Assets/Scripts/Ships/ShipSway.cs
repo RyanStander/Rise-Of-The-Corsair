@@ -4,60 +4,39 @@ namespace Ships
 {
     public class ShipSway
     {
-        private GameObject shipGameObject;
+        private Transform targetTransform;
 
-        private float maxSway = 0.1f;
-        private float maxZRotation = 30f;
-        private float currentSway;
-        private float swaySpeed = 0.005f;
+        private float rotationLimit = 10f;
+        private float rotationSpeed = 30f;
+
+        private Quaternion initialLocalRotation;
+        private float currentRotation = 0.0f;
 
         public ShipSway(GameObject shipGameObject)
         {
-            this.shipGameObject = shipGameObject;
+            targetTransform = shipGameObject.transform;
+            initialLocalRotation = shipGameObject.transform.rotation;
         }
 
         public void UpdateSway(bool isLeft, bool isTurning, float currentTurnStrength)
         {
-            var swayStrength = currentTurnStrength * swaySpeed;
-
-            swayStrength = Mathf.Min(swayStrength, maxSway);
-
-            if (isLeft & isTurning)
+            if (isTurning)
             {
-                currentSway -= swayStrength;
-            }
-            else if (!isLeft & isTurning)
-            {
-                currentSway += swayStrength;
+                float rotationAmount = isLeft ? -rotationSpeed : rotationSpeed;
+                currentRotation += rotationAmount * Time.deltaTime;
+
+                // Ensure the local rotation stays within the limits.
+                currentRotation = Mathf.Clamp(currentRotation, -rotationLimit, rotationLimit);
+
+                Quaternion newLocalRotation = initialLocalRotation * Quaternion.Euler(0, 0, currentRotation);
+
+                targetTransform.localRotation = newLocalRotation;
             }
             else
             {
-                switch (currentSway)
-                {
-                    //If the ship is not turning, sway back to 0
-                    case > 0:
-                        currentSway -= swayStrength;
-                        break;
-                    case < 0:
-                        currentSway += swayStrength;
-                        break;
-                }
+                // Rotate back towards the initial local rotation.
+                targetTransform.localRotation = Quaternion.RotateTowards(targetTransform.localRotation, initialLocalRotation, rotationSpeed * Time.deltaTime);
             }
-
-            var swayRotation = Vector3.forward * currentSway;
-
-            shipGameObject.transform.Rotate(swayRotation);
-
-            //Make it so that the ships z rotation is never more than 30 degrees and never less than -30 degrees
-            var currentZRotation = shipGameObject.transform.rotation.eulerAngles.z;
-            if (currentZRotation > 180)
-                currentZRotation -= 360;
-
-            currentZRotation = Mathf.Clamp(currentZRotation, -maxZRotation, maxZRotation);
-
-            shipGameObject.transform.rotation = Quaternion.Euler(shipGameObject.transform.rotation.eulerAngles.x, shipGameObject.transform.rotation.eulerAngles.y, currentZRotation);
-
-            
         }
     }
 }
