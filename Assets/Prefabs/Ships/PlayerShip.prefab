@@ -2414,6 +2414,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipData: {fileID: 4190680601713946485}
   shipRigidbody: {fileID: 2349626684363690822}
+  childShipGameObject: {fileID: 9134111342436465086}
 --- !u!114 &1561456576704035926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3654,6 +3655,10 @@ PrefabInstance:
       value: Schooner
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ca16791f942a29743bb643847a4fc484, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ca16791f942a29743bb643847a4fc484, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -3804,7 +3809,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9134111342436465086}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 19e828d7f6c704245a1ce11db8466ddb, type: 2}
   m_CullingMode: 0

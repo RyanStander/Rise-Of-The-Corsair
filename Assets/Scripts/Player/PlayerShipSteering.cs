@@ -8,9 +8,11 @@ namespace Player
     public class PlayerShipSteering : ShipSteering
     {
         [SerializeField] private Rigidbody shipRigidbody;
+        [SerializeField] private GameObject childShipGameObject;
 
         private float turnModifier = 1f;
         private float maneuverabilityModifier = 1f;
+        private ShipSway shipSway;
 
         protected override void GetReferences()
         {
@@ -23,6 +25,8 @@ namespace Player
         private void Awake()
         {
             maneuverabilityModifier = GetManeuverabilityModifier();
+
+            shipSway = new ShipSway(childShipGameObject);
         }
 
         public void HandleShipSteering()
@@ -41,10 +45,16 @@ namespace Player
             if (Input.GetKey(KeyCode.A))
             {
                 shipRigidbody.AddTorque(-turnMod * 100);
+                shipSway.UpdateSway(true, true, turnStrength);
             }
             else if (Input.GetKey(KeyCode.D))
             {
                 shipRigidbody.AddTorque(turnMod * 100);
+                shipSway.UpdateSway(false, true, turnStrength);
+            }
+            else
+            {
+                shipSway.UpdateSway(false, false, turnStrength);
             }
         }
 
