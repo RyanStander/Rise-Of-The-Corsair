@@ -7,49 +7,39 @@ namespace AI.Ships
 {
     public class AIShipSteering : ShipSteering
     {
-        private Rigidbody shipRigidbody;
         [SerializeField] private float distanceToPlayer = 20;
         [SerializeField] private GameObject playerShip;
-
-        private float turnModifier = 1f;
-        private float maneuverabilityModifier = 1f;
 
         protected override void GetReferences()
         {
             base.GetReferences();
 
-            if (shipRigidbody == null)
-                shipRigidbody = GetComponent<Rigidbody>();
-
             if (playerShip == null)
                 playerShip = GameObject.FindGameObjectWithTag("Player");
         }
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             if (playerShip == null)
                 playerShip = GameObject.FindGameObjectWithTag("Player");
-
-            maneuverabilityModifier = GetManeuverabilityModifier();
-        }
-
-        public void HandleShipSteering()
-        {
-            TurnShip();
         }
 
         //If the ship is a certain distance away from the player, it will go directly towards the player, when within the range it will try to circle the player
-        private void TurnShip()
+        protected override void TurnShip()
         {
-            var turnMod = Vector3.up * Mathf.Clamp(turnModifier * 1.25f * Time.deltaTime * maneuverabilityModifier *
-                                                   shipRigidbody.velocity.magnitude, 0.5f, 3f);
+            var turnMod = Mathf.Clamp(turnModifier * 1.25f * Time.deltaTime * maneuverabilityModifier *
+                                      shipRigidbody.velocity.magnitude, 0.5f, 3f);
 
             //determine if the ship is within the range of the player
             if (Vector3.Distance(transform.position, playerShip.transform.position) > distanceToPlayer)
             {
                 var direction = playerShip.transform.position - transform.position;
                 var toRotation = Quaternion.LookRotation(direction, transform.up);
-                transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, turnModifier * Time.deltaTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, turnMod * Time.deltaTime);
+
+                shipSway.UpdateSway(false, false);
             }
             else
             {
@@ -64,26 +54,30 @@ namespace AI.Ships
                 {
                     case ShipSide.Starboard: //Right direction
                         toRotation *= Quaternion.Euler(0, 90, 0);
+                        shipSway.UpdateSway(false, true);
                         break;
                     case ShipSide.Port: //Left direction
                         toRotation *= Quaternion.Euler(0, -90, 0);
+                        shipSway.UpdateSway(true, true);
                         break;
                     case ShipSide.Bow:
+                        shipSway.UpdateSway(false, false);
                         break;
                     case ShipSide.Stern:
+                        shipSway.UpdateSway(false, false);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
 
-                transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, turnModifier * Time.deltaTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, turnMod * Time.deltaTime);
             }
 
             //set the x and z rotation back to 0
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         }
 
-        public bool isChasing()
+        public bool IsChasing()
         {
             return Vector3.Distance(transform.position, playerShip.transform.position) > distanceToPlayer;
         }
@@ -102,20 +96,6 @@ namespace AI.Ships
                 > 0 => ShipSide.Starboard,
                 < 0 => ShipSide.Port,
                 _ => ShipSide.Starboard
-            };
-        }
-
-        private float GetManeuverabilityModifier()
-        {
-            return shipData.Stats.Maneuverability switch
-            {
-                ShipManeuverability.Low => 1,
-                ShipManeuverability.LowMid => 1.25f,
-                ShipManeuverability.Mid => 1.5f,
-                ShipManeuverability.MidHigh => 1.75f,
-                ShipManeuverability.High => 2f,
-                ShipManeuverability.VeryHigh => 2.25f,
-                _ => throw new ArgumentOutOfRangeException()
             };
         }
     }

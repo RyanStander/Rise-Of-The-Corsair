@@ -41,7 +41,7 @@ namespace AI.Ships
         private void AttemptFire()
         {
             //for now, only fire if the ship is circling the player TODO: change when implementing other directions
-            if (aiShipSteering.isChasing())
+            if (aiShipSteering.IsChasing())
                 return;
 
             //check the direction of the player to determine which side to fire on

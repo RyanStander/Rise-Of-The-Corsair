@@ -7,35 +7,8 @@ namespace Player
 {
     public class PlayerShipSteering : ShipSteering
     {
-        [SerializeField] private Rigidbody shipRigidbody;
-        [SerializeField] private GameObject childShipGameObject;
-
-        private float turnModifier = 1f;
-        private float maneuverabilityModifier = 1f;
-        private ShipSway shipSway;
-
-        protected override void GetReferences()
-        {
-            base.GetReferences();
-
-            if (shipRigidbody == null)
-                shipRigidbody = GetComponent<Rigidbody>();
-        }
-
-        private void Awake()
-        {
-            maneuverabilityModifier = GetManeuverabilityModifier();
-
-            shipSway = new ShipSway(childShipGameObject);
-        }
-
-        public void HandleShipSteering()
-        {
-            TurnShip();
-        }
-
         //When A or D is held down, turn the ship based on its maneuverability
-        private void TurnShip()
+        protected override void TurnShip()
         {
             var turnStrength = 1.25f * Time.deltaTime * maneuverabilityModifier * shipRigidbody.velocity.magnitude;
 
@@ -56,20 +29,6 @@ namespace Player
             {
                 shipSway.UpdateSway(false, false);
             }
-        }
-
-        private float GetManeuverabilityModifier()
-        {
-            return shipData.Stats.Maneuverability switch
-            {
-                ShipManeuverability.Low => 1,
-                ShipManeuverability.LowMid => 1.25f,
-                ShipManeuverability.Mid => 1.5f,
-                ShipManeuverability.MidHigh => 1.75f,
-                ShipManeuverability.High => 2f,
-                ShipManeuverability.VeryHigh => 2.25f,
-                _ => throw new ArgumentOutOfRangeException()
-            };
         }
     }
 }
