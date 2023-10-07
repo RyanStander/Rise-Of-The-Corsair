@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 2318078650878894444}
   - component: {fileID: 2256585492079433764}
   m_Layer: 0
-  m_Name: boatBase
+  m_Name: Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -778,7 +778,7 @@ Transform:
   m_GameObject: {fileID: 1534107202516974356}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -13.448978, z: 0}
+  m_LocalPosition: {x: 0, y: -5.1737757, z: 8.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -800,7 +800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetSurface: {fileID: 0}
-  yOffset: -3.5
+  yOffset: 0.5
 --- !u!95 &3064177579690914533
 Animator:
   serializedVersion: 7
@@ -2907,7 +2907,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 7.9297714, y: 7.5320263, z: 31.783913}
-  m_Center: {x: -0.04472097, y: 3.2660131, z: -0.10512161}
+  m_Center: {x: -0.04472097, y: -5.13, z: 8.15}
 --- !u!114 &7284518391097116413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2988,7 +2988,7 @@ MonoBehaviour:
   shipRigidbody: {fileID: 372961401452781553}
   childShipGameObject: {fileID: 1534107202516974356}
   distanceToPlayer: 150
-  playerShip: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &8790504905580685706
 MonoBehaviour:
   m_ObjectHideFlags: 0

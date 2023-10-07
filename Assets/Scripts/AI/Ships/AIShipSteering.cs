@@ -8,34 +8,34 @@ namespace AI.Ships
     public class AIShipSteering : ShipSteering
     {
         [SerializeField] private float distanceToPlayer = 20;
-        [SerializeField] private GameObject playerShip;
+        [SerializeField] private Transform player;
 
         protected override void GetReferences()
         {
             base.GetReferences();
 
-            if (playerShip == null)
-                playerShip = GameObject.FindGameObjectWithTag("Player");
+            if (player == null)
+                player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         protected override void Awake()
         {
             base.Awake();
 
-            if (playerShip == null)
-                playerShip = GameObject.FindGameObjectWithTag("Player");
+            if (player == null)
+                player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         //If the ship is a certain distance away from the player, it will go directly towards the player, when within the range it will try to circle the player
         protected override void TurnShip()
         {
             var turnMod = Mathf.Clamp(turnModifier * 1.25f * Time.deltaTime * maneuverabilityModifier *
-                                      shipRigidbody.velocity.magnitude, 0.5f, 3f);
+                                      shipRigidbody.velocity.magnitude, 0.5f, 3f)/2f;
 
             //determine if the ship is within the range of the player
-            if (Vector3.Distance(transform.position, playerShip.transform.position) > distanceToPlayer)
+            if (Vector3.Distance(transform.position, player.position) > distanceToPlayer)
             {
-                var direction = playerShip.transform.position - transform.position;
+                var direction = player.position - transform.position;
                 var toRotation = Quaternion.LookRotation(direction, transform.up);
                 transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, turnMod * Time.deltaTime);
 
@@ -46,7 +46,7 @@ namespace AI.Ships
                 //determine which side of the ship the player is on
                 var aimDirection = DetermineAimDirection();
 
-                var direction = playerShip.transform.position - transform.position;
+                var direction = player.transform.position - transform.position;
 
                 var toRotation = Quaternion.LookRotation(direction, transform.up);
 
@@ -79,13 +79,13 @@ namespace AI.Ships
 
         public bool IsChasing()
         {
-            return Vector3.Distance(transform.position, playerShip.transform.position) > distanceToPlayer;
+            return Vector3.Distance(transform.position, player.position) > distanceToPlayer;
         }
 
         private ShipSide DetermineAimDirection()
         {
             //based on the position of the main camera and the ships position, determine whether the camera is to the left or right of the ship
-            var playerPosition = playerShip.transform.position;
+            var playerPosition = player.position;
             var shipPosition = transform.position;
             var playerDirection = playerPosition - shipPosition;
             var shipDirection = transform.forward;
