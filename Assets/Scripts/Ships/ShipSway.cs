@@ -4,13 +4,13 @@ namespace Ships
 {
     public class ShipSway
     {
-        private Transform targetTransform;
+        private readonly Transform targetTransform;
 
-        private float rotationLimit = 10f;
-        private float rotationSpeed = 30f;
+        private const float RotationLimit = 10f;
+        private const float RotationSpeed = 5f;
 
-        private Quaternion initialLocalRotation;
-        private float currentRotation = 0.0f;
+        private readonly Quaternion initialLocalRotation;
+        private float currentRotation;
 
         public ShipSway(GameObject shipGameObject)
         {
@@ -18,24 +18,31 @@ namespace Ships
             initialLocalRotation = shipGameObject.transform.rotation;
         }
 
-        public void UpdateSway(bool isLeft, bool isTurning, float currentTurnStrength)
+        public void UpdateSway(bool isLeft, bool isTurning)
         {
             if (isTurning)
             {
-                float rotationAmount = isLeft ? -rotationSpeed : rotationSpeed;
+                var rotationAmount = isLeft ? -RotationSpeed : RotationSpeed;
                 currentRotation += rotationAmount * Time.deltaTime;
 
                 // Ensure the local rotation stays within the limits.
-                currentRotation = Mathf.Clamp(currentRotation, -rotationLimit, rotationLimit);
+                currentRotation = Mathf.Clamp(currentRotation, -RotationLimit, RotationLimit);
 
-                Quaternion newLocalRotation = initialLocalRotation * Quaternion.Euler(0, 0, currentRotation);
+                var newLocalRotation = initialLocalRotation * Quaternion.Euler(0, 0, currentRotation);
 
                 targetTransform.localRotation = newLocalRotation;
             }
             else
             {
                 // Rotate back towards the initial local rotation.
-                targetTransform.localRotation = Quaternion.RotateTowards(targetTransform.localRotation, initialLocalRotation, rotationSpeed * Time.deltaTime);
+                targetTransform.localRotation = Quaternion.RotateTowards(targetTransform.localRotation, initialLocalRotation, RotationSpeed * Time.deltaTime);
+
+                //change current rotation to match the current z rotation
+                currentRotation = targetTransform.localRotation.eulerAngles.z;
+
+                //euler angles go from 0 to 360, so if it goes over 180, it will be negative
+                if (currentRotation > 180)
+                    currentRotation -= 360;
             }
         }
     }

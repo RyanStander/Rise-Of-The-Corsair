@@ -45,16 +45,16 @@ namespace Player
             if (Input.GetKey(KeyCode.A))
             {
                 shipRigidbody.AddTorque(-turnMod * 100);
-                shipSway.UpdateSway(true, true, turnStrength);
+                shipSway.UpdateSway(true, true);
             }
             else if (Input.GetKey(KeyCode.D))
             {
                 shipRigidbody.AddTorque(turnMod * 100);
-                shipSway.UpdateSway(false, true, turnStrength);
+                shipSway.UpdateSway(false, true);
             }
             else
             {
-                shipSway.UpdateSway(false, false, turnStrength);
+                shipSway.UpdateSway(false, false);
             }
         }
 
