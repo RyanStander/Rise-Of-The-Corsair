@@ -67,10 +67,7 @@ namespace Ships
             var reloadTime = Time.time + baseReloadTime * (2 - powderMonkeyModifier) -
                              baseReloadTime / 2 * statModifier * combatSupportBonus;
 
-            Debug.Log(
-                $"Reload Time: {reloadTime} = {Time.time} + {baseReloadTime} * (2 - {powderMonkeyModifier}) - {baseReloadTime} / 2 * {statModifier} * {combatSupportBonus}");
-
-            return (float)reloadTime;
+            return reloadTime;
         }
 
         private void SetReloadTimes(float reloadTime, ShipSide side)
