@@ -1,6 +1,7 @@
 using System;
 using Ships.Enums;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Player
 {
@@ -11,6 +12,7 @@ namespace Player
     public class PlayerAiming : MonoBehaviour
     {
         [SerializeField] private CameraManager cameraManager;
+        [SerializeField] private Texture2D aimCursor;
         public ShipSide CurrentAimSide { get; private set; }
         private bool isAiming;
 
@@ -34,6 +36,10 @@ namespace Player
             if (!Input.GetKeyDown(KeyCode.Mouse1))
                 return;
 
+            //change to aiming cursor
+            var hotSpot = new Vector2(aimCursor.width / 2, aimCursor.height / 2);
+            Cursor.SetCursor(aimCursor, hotSpot , CursorMode.Auto);
+
             SwapToAimCamera();
             isAiming = true;
         }
@@ -43,6 +49,9 @@ namespace Player
             //If right click is released swap back to the follow camera
             if (!Input.GetKeyUp(KeyCode.Mouse1))
                 return;
+
+            //change to default cursor
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 
             cameraManager.SwapToFollowCamera();
             isAiming = false;

@@ -2444,6 +2444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraManager: {fileID: 0}
+  aimCursor: {fileID: 2800000, guid: 6e0b92dc5bb4c78478d8257e3cd3e3ae, type: 3}
 --- !u!114 &6357055051439117876
 MonoBehaviour:
   m_ObjectHideFlags: 0
