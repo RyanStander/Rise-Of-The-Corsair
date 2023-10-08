@@ -20,7 +20,6 @@ namespace Player
         {
             if (cameraManager == null)
                 cameraManager = FindObjectsByType<CameraManager>(FindObjectsSortMode.None)[0];
-            ;
         }
 
         public void HandlePlayerAiming()
