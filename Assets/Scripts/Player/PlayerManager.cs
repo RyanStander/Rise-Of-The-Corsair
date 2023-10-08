@@ -43,8 +43,6 @@ namespace Player
 
         #endregion
 
-
-
         private void SetupPlayer()
         {
             if (playerShipSteering == null)
@@ -61,6 +59,8 @@ namespace Player
 
             if (ShipData.IsSunk)
             {
+                Animator.enabled = true;
+
                 Animator.SetBool(isSunk, true);
                 return;
             }

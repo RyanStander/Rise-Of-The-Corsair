@@ -30,6 +30,8 @@ namespace AI.Ships
         {
             if (ShipData.IsSunk)
             {
+                Animator.enabled = true;
+
                 Animator.SetBool(isSunk, true);
                 return;
             }
