@@ -1,5 +1,7 @@
 using System;
 using Ships.Enums;
+using UI;
+using UI.Enums;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +14,7 @@ namespace Player
     public class PlayerAiming : MonoBehaviour
     {
         [SerializeField] private CameraManager cameraManager;
-        [SerializeField] private Texture2D aimCursor;
+        [SerializeField] private CursorManager cursorManager;
         public ShipSide CurrentAimSide { get; private set; }
         private bool isAiming;
 
@@ -20,6 +22,9 @@ namespace Player
         {
             if (cameraManager == null)
                 cameraManager = FindObjectsByType<CameraManager>(FindObjectsSortMode.None)[0];
+
+            if (cursorManager == null)
+                cursorManager = FindObjectsByType<CursorManager>(FindObjectsSortMode.None)[0];
         }
 
         public void HandlePlayerAiming()
@@ -35,9 +40,7 @@ namespace Player
             if (!Input.GetKeyDown(KeyCode.Mouse1))
                 return;
 
-            //change to aiming cursor
-            var hotSpot = new Vector2(aimCursor.width / 2, aimCursor.height / 2);
-            Cursor.SetCursor(aimCursor, hotSpot , CursorMode.Auto);
+            cursorManager.SwapCursor(CursorTypes.Aim);
 
             SwapToAimCamera();
             isAiming = true;
@@ -49,8 +52,7 @@ namespace Player
             if (!Input.GetKeyUp(KeyCode.Mouse1))
                 return;
 
-            //change to default cursor
-            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            cursorManager.SwapCursor(CursorTypes.Default);
 
             cameraManager.SwapToFollowCamera();
             isAiming = false;
