@@ -22,6 +22,8 @@ namespace Ships
         [field: SerializeField] public Transform[] PortCannonPoints { get; private set; }
         [field: SerializeField] public AudioSource[] PortCannonAudioSources { get; private set; }
 
+        #region Straight Fire
+
         public void FireCannons(int sideCannonCount, ShipSide firingSide)
         {
             switch (firingSide)
@@ -74,5 +76,65 @@ namespace Ships
             //Instantiate explosion
             Instantiate(explosionPrefab, position, rotation);
         }
+
+        #endregion
+
+        #region Fire At Angle
+
+        public void FireCannons(int sideCannonCount, ShipSide firingSide, Vector3 forceOverride)
+        {
+            switch (firingSide)
+            {
+                case ShipSide.Starboard:
+                    FireSpecifiedCannon(StarboardCannonPoints, StarboardCannonAudioSources, sideCannonCount,forceOverride);
+                    break;
+                case ShipSide.Port:
+                    FireSpecifiedCannon(PortCannonPoints, PortCannonAudioSources, sideCannonCount,forceOverride);
+                    break;
+                case ShipSide.Bow:
+                    break;
+                case ShipSide.Stern:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(firingSide), firingSide, null);
+            }
+        }
+
+        private void FireSpecifiedCannon(Transform[] cannonPoints, AudioSource[] cannonAudioSources, int sideCannonCount, Vector3 forceOverride)
+        {
+            for (var i = 0; i < sideCannonCount; i++)
+            {
+                if (i >= cannonPoints.Length)
+                {
+                    Debug.LogError("You are trying to fire more cannons than there are on the ship!");
+                    return;
+                }
+
+                StartCoroutine(FireCannon(Random.Range(minToMaxFireDelay.x, minToMaxFireDelay.y), cannonPoints[i], cannonAudioSources[i],forceOverride));
+            }
+        }
+
+        private IEnumerator FireCannon(float waitTime, Transform cannonPoint, AudioSource cannonAudioSource, Vector3 forceOverride)
+        {
+            yield return new WaitForSeconds(waitTime);
+
+            var position = cannonPoint.position;
+            var rotation = cannonPoint.rotation;
+
+            //Instantiate cannonball
+            var cannonBall = Instantiate(cannonBallPrefab, position, rotation);
+            //get rigidbody and add force in the forward direction
+            var projectile = cannonBall.GetComponent<BaseProjectile>();
+
+            projectile.SetProjectile(forceOverride * cannonBallSpeed, transform.root);
+
+            //Play cannon fire sound
+            cannonAudioSource.PlayOneShot(cannonFireSound);
+
+            //Instantiate explosion
+            Instantiate(explosionPrefab, position, rotation);
+        }
+
+        #endregion
     }
 }
