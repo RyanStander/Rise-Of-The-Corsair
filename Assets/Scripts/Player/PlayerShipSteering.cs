@@ -10,7 +10,7 @@ namespace Player
         //When A or D is held down, turn the ship based on its maneuverability
         protected override void TurnShip()
         {
-            var turnStrength = 1.25f * Time.deltaTime * maneuverabilityModifier * shipRigidbody.velocity.magnitude;
+            var turnStrength = 1.25f * Time.deltaTime * maneuverabilityModifier * shipRigidbody.linearVelocity.magnitude;
 
             var turnMod = Vector3.up * Mathf.Clamp(turnModifier * turnStrength, 0.5f, 3f);
 

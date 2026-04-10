@@ -30,7 +30,7 @@ namespace AI.Ships
         protected override void TurnShip()
         {
             var turnMod = Mathf.Clamp(turnModifier * 1.25f * Time.deltaTime * maneuverabilityModifier *
-                                      shipRigidbody.velocity.magnitude, 0.5f, 3f)/2f;
+                                      shipRigidbody.linearVelocity.magnitude, 0.5f, 3f)/2f;
 
             //determine if the ship is within the range of the player
             if (Vector3.Distance(transform.position, player.position) > distanceToPlayer)

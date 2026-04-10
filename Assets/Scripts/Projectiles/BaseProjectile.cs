@@ -105,7 +105,7 @@ namespace Projectiles
         private void InitiateDeSpawn()
         {
             //Stop the rigidbody from moving
-            projectileRigidbody.velocity = Vector3.zero;
+            projectileRigidbody.linearVelocity = Vector3.zero;
             projectileRigidbody.angularVelocity = Vector3.zero;
             projectileRigidbody.useGravity = false;
             projectileMeshRenderer.enabled = false;
