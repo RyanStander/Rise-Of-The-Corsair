@@ -20,7 +20,7 @@ namespace Ships
         public ShipUpgrades Upgrades { get; private set; }
         public List<CrewMemberStats> CrewMembers{ get; private set; } = new();
 
-        private int crewMembersToGenerate = 40;
+        private int crewMembersToGenerate = 20;
 
         private void Awake()
         {

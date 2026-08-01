@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a4c4f683513489646a46095191217038
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 276925
+  packageName: Medieval Ship Collection
+  packageVersion: 1.0
+  assetPath: Assets/Ship_Collection/Materials/Herring_Buss_Body.mat
+  uploadId: 643441
