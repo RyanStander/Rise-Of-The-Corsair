@@ -41,15 +41,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565591421245593577}
   m_Enabled: 1
-  serializedVersion: 10
+  serializedVersion: 12
   m_Type: 1
-  m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 107866.266
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
@@ -93,8 +92,12 @@ Light:
   m_BoundingSphereOverride: {x: 1.4803079e+20, y: 4.4382273e+27, z: 1.1150975e-38, w: 7.0062382e+22}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
 --- !u!114 &5041424843131412488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,22 +110,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 107866.266
+  m_PointlightHDType: 0
+  m_SpotLightShape: 0
+  m_AreaLightShape: 0
   m_EnableSpotReflector: 1
+  m_LightUnit: 2
   m_LuxAtDistance: 1
+  m_Intensity: 107866.266
   m_InnerSpotPercent: 0
+  m_ShapeWidth: 0.5
+  m_ShapeHeight: 0.5
+  m_AspectRatio: 1
+  m_Version: 11
+  m_ObsoleteShadowResolutionTier: 1
+  m_ObsoleteUseShadowQualitySettings: 0
+  m_ObsoleteCustomShadowResolution: 512
+  m_ObsoleteContactShadows: 0
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
-  m_LightUnit: 2
   m_FadeDistance: 10000
   m_VolumetricFadeDistance: 10000
   m_AffectDiffuse: 1
   m_AffectSpecular: 1
   m_NonLightmappedOnly: 0
-  m_ShapeWidth: 0.5
-  m_ShapeHeight: 0.5
-  m_AspectRatio: 1
   m_ShapeRadius: 0.025
   m_SoftnessScale: 1
   m_UseCustomSpotLightShadowCone: 0
@@ -134,15 +145,27 @@ MonoBehaviour:
   m_IESPoint: {fileID: 0}
   m_IESSpot: {fileID: 0}
   m_IncludeForRayTracing: 1
+  m_IncludeForPathTracing: 1
   m_AreaLightShadowCone: 120
   m_UseScreenSpaceShadows: 0
   m_InteractsWithSky: 1
   m_AngularDiameter: 0.5
-  m_FlareSize: 1
-  m_FlareTint: {r: 1, g: 1, b: 1, a: 1}
-  m_FlareFalloff: 1000
-  m_SurfaceTexture: {fileID: 0}
-  m_SurfaceTint: {r: 1, g: 1, b: 1, a: 1}
+  diameterMultiplerMode: 0
+  diameterMultiplier: 1
+  diameterOverride: 0.5
+  celestialBodyShadingSource: 1
+  sunLightOverride: {fileID: 0}
+  sunColor: {r: 1, g: 1, b: 1, a: 1}
+  sunIntensity: 130000
+  moonPhase: 0.2
+  moonPhaseRotation: 0
+  earthshine: 1
+  flareSize: 1
+  flareTint: {r: 1, g: 1, b: 1, a: 1}
+  flareFalloff: 1000
+  flareMultiplier: 1
+  surfaceTexture: {fileID: 0}
+  surfaceTint: {r: 1, g: 1, b: 1, a: 1}
   m_Distance: 1.5e+11
   m_UseRayTracedShadows: 0
   m_NumRayTracingSamples: 4
@@ -163,6 +186,14 @@ MonoBehaviour:
   m_BlockerSampleCount: 24
   m_FilterSampleCount: 16
   m_MinFilterSize: 0.1
+  m_DirLightPCSSBlockerSampleCount: 24
+  m_DirLightPCSSFilterSampleCount: 16
+  m_DirLightPCSSMaxPenumbraSize: 0.56
+  m_DirLightPCSSMaxSamplingDistance: 0.5
+  m_DirLightPCSSMinFilterSizeTexels: 1.5
+  m_DirLightPCSSMinFilterMaxAngularDiameter: 10
+  m_DirLightPCSSBlockerSearchAngularDiameter: 12
+  m_DirLightPCSSBlockerSamplingClumpExponent: 2
   m_KernelSize: 5
   m_LightAngle: 1
   m_MaxDepthBias: 0.001
@@ -209,14 +240,6 @@ MonoBehaviour:
   m_AreaLightEmissiveMeshShadowCastingMode: 0
   m_AreaLightEmissiveMeshMotionVectorGenerationMode: 0
   m_AreaLightEmissiveMeshLayer: -1
-  m_Version: 11
-  m_ObsoleteShadowResolutionTier: 1
-  m_ObsoleteUseShadowQualitySettings: 0
-  m_ObsoleteCustomShadowResolution: 512
-  m_ObsoleteContactShadows: 0
-  m_PointlightHDType: 0
-  m_SpotLightShape: 0
-  m_AreaLightShape: 0
 --- !u!1 &1394220325058103916
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,59 +324,15 @@ MonoBehaviour:
   largeBand0FadeToggle: 1
   largeBand1FadeToggle: 1
   ripplesFadeToggle: 1
-  surfaceType: 0
-  geometryType: 3
-  meshRenderers: []
-  timeMultiplier: 1
-  cpuSimulation: 1
-  cpuFullResolution: 0
-  cpuEvaluateRipples: 1
-  customMaterial: {fileID: 0}
-  startSmoothness: 0.76868635
-  endSmoothness: 0.6686864
-  smoothnessFadeStart: 100
-  smoothnessFadeDistance: 500
-  refractionColor: {r: 0.010022826, g: 0.21404114, b: 0.21404114, a: 1}
-  maxRefractionDistance: 0.5
-  absorptionDistance: 1.5
-  scatteringColor: {r: 0, g: 0.13286833, b: 0.13286833, a: 1}
-  ambientScattering: 0.2
-  heightScattering: 0.2
-  displacementScattering: 0.1
-  directLightTipScattering: 0.6
-  directLightBodyScattering: 0.5
-  maximumHeightOverride: 0
-  caustics: 0
-  causticsIntensity: 0.5
-  causticsPlaneBlendDistance: 1
-  causticsResolution: 256
-  causticsBand: 2
-  virtualPlaneDistance: 4
-  causticsTilingFactor: 1
-  causticsDirectionalShadow: 0
-  causticsDirectionalShadowDimmer: 0.25
-  renderingLayerMask: 257
-  debugMode: 0
-  waterMaskDebugMode: 0
-  waterCurrentDebugMode: 0
-  currentDebugMultiplier: 1
-  waterFoamDebugMode: 0
-  underWater: 0
-  volumeBounds: {fileID: 0}
-  volumeDepth: 50
-  volumeHeight: 0
-  volumePrority: 0
-  absorptionDistanceMultiplier: 1
-  colorPyramidOffset: 1
-  underWaterAmbientProbeContribution: 1
-  underWaterScatteringColorMode: 0
-  underWaterScatteringColor: {r: 0, g: 0.27, b: 0.23, a: 1}
-  underWaterRefraction: 0
+  supportLargeCurrent: 0
+  largeCurrentRes: 512
   largeCurrentSpeedValue: 0
   largeCurrentMap: {fileID: 0}
   largeCurrentRegionExtent: {x: 100, y: 100}
   largeCurrentRegionOffset: {x: 0, y: 0}
   largeCurrentMapInfluence: 1
+  supportRipplesCurrent: 0
+  ripplesCurrentRes: 512
   ripplesCurrentSpeedValue: 0
   ripplesCurrentMap: {fileID: 0}
   ripplesCurrentRegionExtent: {x: 100, y: 100}
@@ -361,17 +340,15 @@ MonoBehaviour:
   ripplesCurrentMapInfluence: 1
   deformation: 1
   deformationRes: 512
-  deformationAreaSize: {x: 800, y: 800}
-  deformationAreaOffset: {x: 0, y: 0}
   foam: 1
   foamResolution: 2048
-  foamAreaSize: {x: 800, y: 800}
-  foamAreaOffset: {x: 0, y: 0}
   foamPersistenceMultiplier: 0.91
+  foamCurrentInfluence: 0.6
+  foamColor: {r: 1, g: 1, b: 1, a: 1}
   foamTextureTiling: 0.15
   foamSmoothness: 0.079
-  simulationFoam: 1
   simulationFoamAmount: 0.711
+  supportSimulationFoamMask: 0
   simulationFoamMask: {fileID: 0}
   simulationFoamMaskExtent: {x: 100, y: 100}
   simulationFoamMaskOffset: {x: 0, y: 0}
@@ -410,8 +387,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   repetitionSize: 1200
   largeOrientationValue: 0
-  largeWindSpeed: 214
-  largeChaos: 0.873
+  largeWindSpeed: 20
+  largeChaos: 0.025
   largeBand0Multiplier: 1
   largeBand0FadeMode: 1
   largeBand0FadeStart: 1500
@@ -423,15 +400,69 @@ MonoBehaviour:
   ripples: 1
   ripplesMotionMode: 0
   ripplesOrientationValue: 0
-  ripplesWindSpeed: 8
-  ripplesChaos: 0.8
+  ripplesWindSpeed: 2
+  ripplesChaos: 0.052
   ripplesFadeMode: 1
   ripplesFadeStart: 50
   ripplesFadeDistance: 200
+  simulationMask: 0
+  maskRes: 512
   waterMask: {fileID: 0}
   waterMaskRemap: {x: 0, y: 1}
   waterMaskExtent: {x: 100, y: 100}
   waterMaskOffset: {x: 0, y: 0}
+  surfaceType: 0
+  geometryType: 3
+  meshRenderers: []
+  timeMultiplier: 1
+  scriptInteractions: 1
+  cpuEvaluateRipples: 1
+  customMaterial: {fileID: 0}
+  startSmoothness: 0.76868635
+  endSmoothness: 0.6686864
+  smoothnessFadeStart: 100
+  smoothnessFadeDistance: 500
+  tessellation: 0
+  maxTessellationFactor: 3
+  tessellationFactorFadeStart: 150
+  tessellationFactorFadeRange: 1850
+  refractionColor: {r: 0.010022826, g: 0.21404114, b: 0.21404114, a: 1}
+  maxRefractionDistance: 0.5
+  absorptionDistance: 1.5
+  scatteringColor: {r: 0, g: 0.13286833, b: 0.13286833, a: 1}
+  ambientScattering: 0.2
+  heightScattering: 0.2
+  displacementScattering: 0.1
+  directLightTipScattering: 0.6
+  directLightBodyScattering: 0.5
+  maximumHeightOverride: 0
+  caustics: 0
+  causticsIntensity: 0.5
+  causticsPlaneBlendDistance: 1
+  causticsResolution: 256
+  causticsBand: 2
+  virtualPlaneDistance: 4
+  causticsTilingFactor: 1
+  causticsDirectionalShadow: 0
+  causticsDirectionalShadowDimmer: 0.25
+  renderingLayerMask: 257
+  debugMode: 0
+  waterMaskDebugMode: 0
+  waterCurrentDebugMode: 0
+  currentDebugMultiplier: 1
+  waterFoamDebugMode: 0
+  underWater: 0
+  volumeBounds: {fileID: 0}
+  volumeDepth: 50
+  volumeHeight: 0
+  volumePrority: 0
+  absorptionDistanceMultiplier: 1
+  underWaterAmbientProbeContribution: 1
+  underWaterScatteringColorMode: 0
+  underWaterScatteringColor: {r: 0, g: 0.27, b: 0.23, a: 1}
+  underWaterRefraction: 0
+  decalRegionSize: {x: 200, y: 200}
+  decalRegionAnchor: {fileID: 0}
 --- !u!1 &7858434726556174296
 GameObject:
   m_ObjectHideFlags: 0
