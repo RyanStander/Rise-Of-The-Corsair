@@ -230,11 +230,11 @@ MonoBehaviour:
     supportWater: 1
     waterSimulationResolution: 256
     supportWaterExclusion: 1
-    supportWaterHorizontalDeformation: 0
+    supportWaterHorizontalDeformation: 1
     supportWaterDecals: 1
     waterDecalAtlasSize: 1024
     maximumWaterDecalCount: 48
-    waterScriptInteractionsMode: 0
+    waterScriptInteractionsMode: 1
     waterFullCPUSimulation: 0
     supportComputeThickness: 0
     computeThicknessResolution: 1

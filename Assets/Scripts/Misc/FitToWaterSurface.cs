@@ -59,11 +59,10 @@ namespace Misc
             Vector3 targetPosition = new Vector3(transform.position.x, averageY + yOffset, transform.position.z);
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * dampStrength);
 
-            //damp to target rotation, need to preserve the yaw and heading
-            Quaternion targetRotation = Quaternion.FromToRotation(Vector3.up, rotationTarget);
-            Quaternion yRotation = Quaternion.Euler(0, transform.eulerAngles.y, 0);
-            Quaternion finalRotation = yRotation * targetRotation;
-            transform.rotation = Quaternion.Lerp(transform.rotation, finalRotation, Time.deltaTime * dampStrength);
+            Vector3 localRotationTarget = transform.parent.InverseTransformDirection(rotationTarget);
+
+            Quaternion targetLocalRotation = Quaternion.FromToRotation(Vector3.up, localRotationTarget);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, targetLocalRotation, Time.deltaTime * dampStrength);
         }
 
         private Vector3 GetProjectedWaterPosition(Vector3 position)
