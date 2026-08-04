@@ -8,7 +8,7 @@ namespace Player
     [RequireComponent(typeof(PlayerShipSteering))]
     [RequireComponent(typeof(PlayerFiring))]
     [RequireComponent(typeof(PlayerAiming))]
-
+    [RequireComponent(typeof(WeaponManager))]
     public class PlayerManager : ShipManager
     {
         [SerializeField] private PlayerShipSteering playerShipSteering;

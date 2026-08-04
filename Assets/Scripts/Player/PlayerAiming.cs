@@ -63,18 +63,20 @@ namespace Player
             if (isAiming)
                 return;
 
-            //based on the position of the main camera and the ships position, determine whether the camera is to the left or right of the ship
             var cameraPosition = cameraManager.MainCamera.transform.position;
             var shipPosition = transform.position;
             var cameraDirection = cameraPosition - shipPosition;
             var shipDirection = transform.forward;
-            var crossProduct = Vector3.Cross(cameraDirection, shipDirection);
 
-            CurrentAimSide = crossProduct.y switch
+            //angle between where the ship is facing and where the camera currently is, signed around the Y axis
+            var angle = Vector3.SignedAngle(shipDirection, cameraDirection, Vector3.up);
+
+            CurrentAimSide = angle switch
             {
-                > 0 => ShipSide.Starboard,
-                < 0 => ShipSide.Port,
-                _ => CurrentAimSide
+                > -45f and <= 45f => ShipSide.Stern,
+                > 45f and <= 135f => ShipSide.Starboard,
+                > -135f and <= -45f => ShipSide.Port,
+                _ => ShipSide.Bow
             };
         }
 

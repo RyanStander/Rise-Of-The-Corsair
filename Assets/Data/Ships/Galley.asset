@@ -19,7 +19,7 @@ MonoBehaviour:
   <Durability>k__BackingField: 1
   <BestSailingPoint>k__BackingField: 2
   <SpeedModifier>k__BackingField: 1
-  <MaxSpeed>k__BackingField: 16
+  <MaxSpeed>k__BackingField: 5
   <MinSpeed>k__BackingField: 0.5
   <CargoCapacity>k__BackingField: 100
   <BasicSalePrice>k__BackingField: 150

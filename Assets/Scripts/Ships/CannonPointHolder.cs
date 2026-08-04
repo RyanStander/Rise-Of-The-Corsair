@@ -15,45 +15,26 @@ namespace Ships
         [SerializeField] private GameObject cannonBallPrefab;
         [SerializeField] private GameObject explosionPrefab;
         [SerializeField] private AudioClip cannonFireSound;
-        [SerializeField] private float cannonBallSpeed;
+        [SerializeField] private float cannonBallSpeed = 120;
         [SerializeField] private Vector2 minToMaxFireDelay = new Vector2(0, 0.5f);
-        [field: SerializeField] public Transform[] StarboardCannonPoints { get; private set; }
-        [field: SerializeField] public AudioSource[] StarboardCannonAudioSources { get; private set; }
-        [field: SerializeField] public Transform[] PortCannonPoints { get; private set; }
-        [field: SerializeField] public AudioSource[] PortCannonAudioSources { get; private set; }
+        [field: SerializeField] private CannonPoint[] cannonPoints;
+
+        private void OnValidate()
+        {
+            cannonPoints = GetComponentsInChildren<CannonPoint>(true);
+        }
 
         #region Straight Fire
 
-        public void FireCannons(int sideCannonCount, ShipSide firingSide)
+        public void FireCannons(ShipSide firingSide)
         {
-            switch (firingSide)
+            foreach (CannonPoint cannonPoint in cannonPoints)
             {
-                case ShipSide.Starboard:
-                    FireSpecifiedCannon(StarboardCannonPoints, StarboardCannonAudioSources, sideCannonCount);
-                    break;
-                case ShipSide.Port:
-                    FireSpecifiedCannon(PortCannonPoints, PortCannonAudioSources, sideCannonCount);
-                    break;
-                case ShipSide.Bow:
-                    break;
-                case ShipSide.Stern:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(firingSide), firingSide, null);
-            }
-        }
-
-        private void FireSpecifiedCannon(Transform[] cannonPoints, AudioSource[] cannonAudioSources, int sideCannonCount)
-        {
-            for (var i = 0; i < sideCannonCount; i++)
-            {
-                if (i >= cannonPoints.Length)
+                if (cannonPoint.CannonZone == firingSide && cannonPoint.IsCannonInstalled)
                 {
-                    Debug.LogError("You are trying to fire more cannons than there are on the ship!");
-                    return;
+                    StartCoroutine(FireCannon(Random.Range(minToMaxFireDelay.x, minToMaxFireDelay.y),
+                        cannonPoint.CannonPointTransform, cannonPoint.CannonAudioSource));
                 }
-
-                StartCoroutine(FireCannon(Random.Range(minToMaxFireDelay.x, minToMaxFireDelay.y), cannonPoints[i], cannonAudioSources[i]));
             }
         }
 
@@ -79,62 +60,14 @@ namespace Ships
 
         #endregion
 
-        #region Fire At Angle
-
-        public void FireCannons(int sideCannonCount, ShipSide firingSide, Vector3 forceOverride)
+        public void InstallCannon(int cannonID, GameObject cannonPrefab)
         {
-            switch (firingSide)
-            {
-                case ShipSide.Starboard:
-                    FireSpecifiedCannon(StarboardCannonPoints, StarboardCannonAudioSources, sideCannonCount,forceOverride);
-                    break;
-                case ShipSide.Port:
-                    FireSpecifiedCannon(PortCannonPoints, PortCannonAudioSources, sideCannonCount,forceOverride);
-                    break;
-                case ShipSide.Bow:
-                    break;
-                case ShipSide.Stern:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(firingSide), firingSide, null);
-            }
+            cannonPoints[cannonID].InstallCannon(cannonPrefab);
         }
 
-        private void FireSpecifiedCannon(Transform[] cannonPoints, AudioSource[] cannonAudioSources, int sideCannonCount, Vector3 forceOverride)
+        public int GetTotalCannonCount()
         {
-            for (var i = 0; i < sideCannonCount; i++)
-            {
-                if (i >= cannonPoints.Length)
-                {
-                    Debug.LogError("You are trying to fire more cannons than there are on the ship!");
-                    return;
-                }
-
-                StartCoroutine(FireCannon(Random.Range(minToMaxFireDelay.x, minToMaxFireDelay.y), cannonPoints[i], cannonAudioSources[i],forceOverride));
-            }
+            return cannonPoints.Length;
         }
-
-        private IEnumerator FireCannon(float waitTime, Transform cannonPoint, AudioSource cannonAudioSource, Vector3 forceOverride)
-        {
-            yield return new WaitForSeconds(waitTime);
-
-            var position = cannonPoint.position;
-            var rotation = cannonPoint.rotation;
-
-            //Instantiate cannonball
-            var cannonBall = Instantiate(cannonBallPrefab, position, rotation);
-            //get rigidbody and add force in the forward direction
-            var projectile = cannonBall.GetComponent<BaseProjectile>();
-
-            projectile.SetProjectile(forceOverride * cannonBallSpeed, transform.root);
-
-            //Play cannon fire sound
-            cannonAudioSource.PlayOneShot(cannonFireSound);
-
-            //Instantiate explosion
-            Instantiate(explosionPrefab, position, rotation);
-        }
-
-        #endregion
     }
 }

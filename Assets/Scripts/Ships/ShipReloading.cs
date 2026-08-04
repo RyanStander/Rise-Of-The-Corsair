@@ -13,6 +13,8 @@ namespace Ships
         [SerializeField] private ShipManager shipManager;
         private float timeSinceLastFireStarboard;
         private float timeSinceLastFirePort;
+        private float timeSinceLastFireBow;
+        private float timeSinceLastFireStern;
 
         private void OnValidate()
         {
@@ -26,8 +28,8 @@ namespace Ships
             {
                 ShipSide.Starboard => timeSinceLastFireStarboard <= Time.time,
                 ShipSide.Port => timeSinceLastFirePort <= Time.time,
-                ShipSide.Bow => false,
-                ShipSide.Stern => false,
+                ShipSide.Bow => timeSinceLastFireBow <= Time.time,
+                ShipSide.Stern => timeSinceLastFireStern <= Time.time,
                 _ => throw new ArgumentOutOfRangeException(nameof(side), side, null)
             };
         }
@@ -81,10 +83,10 @@ namespace Ships
                     timeSinceLastFirePort = reloadTime;
                     break;
                 case ShipSide.Bow:
-                    Debug.Log("Not Implemented");
+                    timeSinceLastFireBow = reloadTime;
                     break;
                 case ShipSide.Stern:
-                    Debug.Log("Not Implemented");
+                    timeSinceLastFireStern = reloadTime;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(side), side, null);

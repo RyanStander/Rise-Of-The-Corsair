@@ -51,7 +51,7 @@ namespace AI.Ships
             if (shipReloading.CanFire(aimDirection))
             {
                 //fire the cannons
-                cannonPointHolder.FireCannons(8, aimDirection);
+                cannonPointHolder.FireCannons(aimDirection);
                 shipReloading.StartReload(aimDirection);
             }
         }
